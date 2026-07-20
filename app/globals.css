@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Next Gen is a dark, industrial fight-gym brand (silver on black), the
+     opposite of The Pad Guy's light editorial look. Base is ink with paper text. */
+  body {
+    @apply bg-ink font-sans text-paper antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display uppercase tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-paper text-ink;
+  }
+}
+
+@layer components {
+  /* Small letter-spaced kicker label, e.g. "— TIMETABLE". */
+  .kicker {
+    @apply font-sans text-xs font-semibold uppercase tracking-kicker text-steel-300;
+  }
+
+  /* Thin hairline used to divide sections on the dark ground. */
+  .hairline {
+    @apply border-t border-paper/10;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  /* `clip` (not `hidden`) prevents sideways scroll without creating a scroll
+     container that would break position: sticky on the nav. */
+  overflow-x: clip;
+}

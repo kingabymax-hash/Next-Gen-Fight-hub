@@ -1,0 +1,118 @@
+/**
+ * The eight paid offerings. Two shapes sit deliberately side by side:
+ *   - general tiers (Bronze/Silver/Gold/Platinum), and
+ *   - discipline-specific memberships (Muay Thai £80, Boxing £85).
+ * Plus casual £10 drop-in / day pass. No joining fee. Prices confirmed by Hayden.
+ *
+ * `paymentKey` maps to lib/site/payments.ts. `featured` marks the recommended tier.
+ */
+import type { PaymentKey } from "@/lib/site/payments";
+
+export type Cadence = "month" | "one-off";
+export type MembershipGroup = "tier" | "discipline" | "casual";
+
+export type Membership = {
+  key: PaymentKey;
+  name: string;
+  price: number; // GBP
+  cadence: Cadence;
+  group: MembershipGroup;
+  summary: string;
+  includes: string[];
+  featured?: boolean;
+};
+
+export const memberships: Membership[] = [
+  {
+    key: "bronze",
+    name: "Bronze",
+    price: 35,
+    cadence: "month",
+    group: "tier",
+    summary: "Use of the facilities and open gym.",
+    includes: ["Full use of the facilities", "Open gym access"],
+  },
+  {
+    key: "silver",
+    name: "Silver",
+    price: 50,
+    cadence: "month",
+    group: "tier",
+    summary: "Facilities plus one class a week.",
+    includes: ["Full use of the facilities", "1 class per week", "Open gym access"],
+  },
+  {
+    key: "muaythai",
+    name: "Muay Thai",
+    price: 80,
+    cadence: "month",
+    group: "discipline",
+    summary: "Muay Thai only: 3 classes a week plus open gym.",
+    includes: ["3 Muay Thai classes per week", "Open gym access"],
+  },
+  {
+    key: "boxing",
+    name: "Boxing",
+    price: 85,
+    cadence: "month",
+    group: "discipline",
+    summary: "Boxing only, in partnership with Top Rope Boxing: 4 sessions a week.",
+    includes: [
+      "4 boxing sessions per week",
+      "Mon 8pm, Wed 7:30pm, Fri 7:30pm, Sat 12pm",
+      "Run by Top Rope Boxing",
+    ],
+  },
+  {
+    key: "gold",
+    name: "Gold",
+    price: 90,
+    cadence: "month",
+    group: "tier",
+    summary: "Facilities plus five classes a week.",
+    includes: ["Full use of the facilities", "5 classes per week", "Open gym access"],
+  },
+  {
+    key: "platinum",
+    name: "Platinum",
+    price: 100,
+    cadence: "month",
+    group: "tier",
+    summary: "Everything, unlimited. All disciplines, including boxing and MMA.",
+    includes: [
+      "Full use of the facilities",
+      "Unlimited classes, every discipline",
+      "Boxing and MMA included",
+      "Open gym access",
+    ],
+    featured: true,
+  },
+  {
+    key: "dropIn",
+    name: "Drop-in class",
+    price: 10,
+    cadence: "one-off",
+    group: "casual",
+    summary: "A single class, any discipline.",
+    includes: ["One class, any discipline", "No commitment"],
+  },
+  {
+    key: "dayPass",
+    name: "Day pass",
+    price: 10,
+    cadence: "one-off",
+    group: "casual",
+    summary: "Use of the facilities for the day.",
+    includes: ["Full use of the facilities for one day", "No commitment"],
+  },
+];
+
+export const membershipsByGroup = {
+  tier: memberships.filter((m) => m.group === "tier"),
+  discipline: memberships.filter((m) => m.group === "discipline"),
+  casual: memberships.filter((m) => m.group === "casual"),
+};
+
+export function priceLabel(m: Membership): string {
+  return m.cadence === "month" ? `£${m.price}/mo` : `£${m.price}`;
+}
