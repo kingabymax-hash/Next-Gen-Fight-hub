@@ -30,3 +30,6 @@ next-env.d.ts
 /media-masters
 *.mov
 *.MOV
+
+# source imagery working folder (optimised copies live in public/images)
+/imagery

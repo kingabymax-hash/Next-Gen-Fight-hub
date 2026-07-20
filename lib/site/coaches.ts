@@ -25,7 +25,7 @@ export const coaches: Coach[] = [
     bio: "Head coach and founder. Fifteen years on the pads across Muay Thai, boxing, K1 and MMA, a competitive fighter, and the coach behind The Pad Guy Programme.",
     instagramHandle: "@thepadguy",
     instagramUrl: "https://www.instagram.com/thepadguy/",
-    photo: null,
+    photo: "/images/coaches/hayden.jpg",
     headCoach: true,
   },
   {
@@ -34,7 +34,7 @@ export const coaches: Coach[] = [
     bio: "K1 and striking. Sharp, technical sessions built on footwork, timing and combinations.",
     instagramHandle: "@lpfstriking_",
     instagramUrl: "https://www.instagram.com/lpfstriking_/",
-    photo: null,
+    photo: "/images/coaches/lpf.jpg",
     isTeam: true,
   },
   {
@@ -43,7 +43,7 @@ export const coaches: Coach[] = [
     bio: "Muay Thai. Clean technique and ring craft, fundamentals through to fight prep.",
     instagramHandle: "@jamiebiggsmt",
     instagramUrl: "https://www.instagram.com/jamiebiggsmt/",
-    photo: null,
+    photo: "/images/coaches/jamie.jpg",
   },
   {
     name: "Evan Jays",
@@ -51,7 +51,7 @@ export const coaches: Coach[] = [
     bio: "Muay Thai. Technique and conditioning for every level, beginners welcome.",
     instagramHandle: "@evan_jays",
     instagramUrl: "https://www.instagram.com/evan_jays/",
-    photo: null,
+    photo: "/images/coaches/evan.jpg",
   },
   {
     name: "Top Rope Boxing",
@@ -59,7 +59,7 @@ export const coaches: Coach[] = [
     bio: "Boxing. Four proper boxing sessions a week, first jab to sparring.",
     instagramHandle: "@toprope.boxing",
     instagramUrl: "https://www.instagram.com/toprope.boxing/",
-    photo: null,
+    photo: "/images/coaches/toprope.jpg",
     isTeam: true,
   },
   {
@@ -68,7 +68,7 @@ export const coaches: Coach[] = [
     bio: "MMA. Leads the Wednesday MMA class, all levels, striking through to ground work.",
     instagramHandle: "@jaccob_gifford",
     instagramUrl: "https://www.instagram.com/jaccob_gifford/",
-    photo: null,
+    photo: "/images/coaches/jacob.jpg",
   },
 ];
 
