@@ -29,6 +29,8 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-display)", "Arial Narrow", "sans-serif"],
+        // Wordmark only: matches the lettering inside the logo emblem.
+        brand: ["var(--font-brand)", "Arial Black", "sans-serif"],
         sans: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       letterSpacing: {

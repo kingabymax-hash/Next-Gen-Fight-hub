@@ -17,7 +17,7 @@ export function Logo({ className = "" }: { className?: string }) {
         priority
         className="h-11 w-11 object-contain"
       />
-      <span className="font-display text-lg uppercase leading-none tracking-tight text-paper">
+      <span className="font-brand text-sm uppercase leading-none tracking-tight text-paper sm:text-base">
         Next Gen
         <span className="text-steel-300"> Fight Hub</span>
       </span>

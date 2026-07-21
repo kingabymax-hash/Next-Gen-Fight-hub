@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Inter } from "next/font/google";
+import { Anton, Archivo_Black, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site/config";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -11,6 +11,14 @@ const display = Anton({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-display",
+  display: "swap",
+});
+// Brand: heavy, slightly extended block grotesque matching the emblem's
+// "NEXT GEN / FIGHT HUB" lettering. Used only for the header/footer wordmark.
+const brand = Archivo_Black({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-brand",
   display: "swap",
 });
 const body = Inter({
@@ -46,7 +54,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${display.variable} ${brand.variable} ${body.variable}`}>
       <body>
         <SiteHeader />
         <main>{children}</main>

@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Brand + address */}
           <div>
-            <p className="font-display text-2xl uppercase leading-none tracking-tight text-paper">
+            <p className="font-brand text-xl uppercase leading-none tracking-tight text-paper">
               Next Gen <span className="text-steel-300">Fight Hub</span>
             </p>
             <p className="mt-4 text-sm uppercase tracking-[0.2em] text-steel-400">
