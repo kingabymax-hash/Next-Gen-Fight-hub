@@ -1,5 +1,6 @@
 /** Primary navigation, shared by header and footer. */
 export const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/timetable", label: "Timetable" },
   { href: "/memberships", label: "Memberships" },
   { href: "/coaches", label: "Coaches" },

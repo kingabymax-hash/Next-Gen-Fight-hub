@@ -53,7 +53,7 @@ export default function AboutPage() {
                   alt="Pad work under the lights in the ring at Next Gen Fight Hub"
                   fill
                   sizes="(min-width: 1024px) 48vw, 100vw"
-                  className="object-cover object-center grayscale"
+                  className="object-cover object-center"
                 />
               </div>
             </div>

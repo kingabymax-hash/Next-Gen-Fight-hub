@@ -23,7 +23,7 @@ export default function HomePage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center grayscale"
+          className="object-cover object-[center_28%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
         <Container className="relative pb-16 sm:pb-24">
@@ -158,7 +158,7 @@ export default function HomePage() {
                   alt={img.alt}
                   fill
                   sizes="(min-width: 1024px) 25vw, 50vw"
-                  className="object-cover grayscale transition duration-500 hover:grayscale-0"
+                  className="object-cover transition duration-500 hover:scale-[1.03]"
                 />
               </Link>
             ))}

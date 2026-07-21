@@ -25,7 +25,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-screen-2xl items-center justify-between px-6 py-4 sm:px-8">
         <Logo />
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           {navLinks.map((l) => {
             const active = pathname === l.href;
             return (
@@ -41,7 +41,7 @@ export function SiteHeader() {
             );
           })}
           <Link href="/memberships" className={buttonClasses("primary")}>
-            Try for £10
+            Join
           </Link>
         </nav>
 
@@ -86,7 +86,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link href="/memberships" className={`${buttonClasses("primary", true)} mt-6`}>
-              Try for £10
+              Join
             </Link>
           </div>
         </nav>

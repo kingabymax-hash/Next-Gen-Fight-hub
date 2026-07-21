@@ -8,6 +8,7 @@
  */
 
 export type Coach = {
+  id: string; // stable slug, referenced by the timetable slots
   name: string;
   disciplines: string[];
   bio: string;
@@ -20,6 +21,7 @@ export type Coach = {
 
 export const coaches: Coach[] = [
   {
+    id: "hayden",
     name: "Hayden",
     disciplines: ["Muay Thai", "Boxing", "K1", "MMA"],
     bio: "Head coach and founder. Fifteen years on the pads across Muay Thai, boxing, K1 and MMA, a competitive fighter, and the coach behind The Pad Guy Programme.",
@@ -29,6 +31,7 @@ export const coaches: Coach[] = [
     headCoach: true,
   },
   {
+    id: "lpf",
     name: "LPF Striking",
     disciplines: ["K1", "Striking"],
     bio: "K1 and striking. Sharp, technical sessions built on footwork, timing and combinations.",
@@ -38,6 +41,7 @@ export const coaches: Coach[] = [
     isTeam: true,
   },
   {
+    id: "jamie",
     name: "Jamie Biggs",
     disciplines: ["Muay Thai"],
     bio: "Muay Thai. Clean technique and ring craft, fundamentals through to fight prep.",
@@ -46,6 +50,7 @@ export const coaches: Coach[] = [
     photo: "/images/coaches/jamie.jpg",
   },
   {
+    id: "evan",
     name: "Evan Jays",
     disciplines: ["Muay Thai"],
     bio: "Muay Thai. Technique and conditioning for every level, beginners welcome.",
@@ -54,6 +59,7 @@ export const coaches: Coach[] = [
     photo: "/images/coaches/evan.jpg",
   },
   {
+    id: "toprope",
     name: "Top Rope Boxing",
     disciplines: ["Boxing"],
     bio: "Boxing. Four proper boxing sessions a week, first jab to sparring.",
@@ -63,6 +69,7 @@ export const coaches: Coach[] = [
     isTeam: true,
   },
   {
+    id: "jacob",
     name: "Jacob Gifford",
     disciplines: ["MMA"],
     bio: "MMA. Leads the Wednesday MMA class, all levels, striking through to ground work.",
@@ -71,6 +78,11 @@ export const coaches: Coach[] = [
     photo: "/images/coaches/jacob.jpg",
   },
 ];
+
+/** Look up a coach by their stable id (used by the timetable). */
+export function coachById(id: string): Coach | undefined {
+  return coaches.find((c) => c.id === id);
+}
 
 /** Initials for the placeholder monogram when no photo is supplied. */
 export function coachMonogram(name: string): string {

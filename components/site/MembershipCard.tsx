@@ -11,6 +11,8 @@ export function MembershipCard({ membership }: { membership: Membership }) {
   const live = isConfigured(membership.key);
   const href = paymentUrl(membership.key);
   const featured = membership.featured;
+  // Casual £10 passes are bought in person on the day, never online.
+  const inPerson = membership.group === "casual";
 
   return (
     <div
@@ -47,7 +49,14 @@ export function MembershipCard({ membership }: { membership: Membership }) {
       </ul>
 
       <div className="mt-8">
-        {live ? (
+        {inPerson ? (
+          <span
+            className={`${buttonClasses("outline", true)} pointer-events-none`}
+            aria-disabled="true"
+          >
+            Pay at the gym
+          </span>
+        ) : live ? (
           <a
             href={href}
             target="_blank"
@@ -66,7 +75,7 @@ export function MembershipCard({ membership }: { membership: Membership }) {
         )}
       </div>
       <p className="mt-3 text-center text-[0.7rem] uppercase tracking-[0.15em] text-steel-500">
-        {priceLabel(membership)} · no joining fee
+        {inPerson ? `${priceLabel(membership)} · paid in person` : `${priceLabel(membership)} · no joining fee`}
       </p>
     </div>
   );

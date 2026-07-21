@@ -23,8 +23,11 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
 4. **Content is data, not markup.** Timetable, memberships, coaches, and site config live in
    typed modules under `lib/site/`. Opening hours derive from the timetable so they can't
    disagree. Update data there, never hard-code it into a page.
-5. **Strictly monochrome.** Black / white / cool-grey only (tokens in `tailwind.config.ts`:
-   `ink`, `paper`, `steel`). No colour accents.
+5. **Monochrome UI, colour photography.** All chrome/text/backgrounds are black / white /
+   cool-grey only (tokens in `tailwind.config.ts`: `ink`, `paper`, `steel`); no colour UI
+   accents. Photography now ships in colour (remove the `grayscale` class), with ONE
+   deliberate exception: the Coaches page portraits stay `grayscale` for a uniform team wall.
+   The Contact map embed also stays grayscale to avoid clashing with the dark theme.
 6. **No em dashes in user-facing copy.** Use commas, colons, or parentheses.
 7. **Never fabricate coach credentials.** Bios are truthful and discipline-based; real
    detail comes from Hayden only.

@@ -56,7 +56,7 @@ export default function MediaPage() {
                   alt={img.alt}
                   fill
                   sizes={img.wide ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
-                  className="object-cover object-center grayscale transition duration-500 hover:grayscale-0"
+                  className="object-cover object-center transition duration-500 hover:scale-[1.03]"
                 />
               </div>
             ))}
@@ -68,7 +68,7 @@ export default function MediaPage() {
 
           <div className="mt-10">
             <ButtonLink href="/memberships" variant="primary">
-              Try a class for £10
+              See memberships
             </ButtonLink>
           </div>
         </Container>
