@@ -19,11 +19,11 @@ export default function HomePage() {
       <section className="relative flex min-h-[88vh] items-end overflow-hidden">
         <Image
           src="/images/hero.jpg"
-          alt="Training in the ring at Next Gen Fight Hub"
+          alt="The Next Gen Fight Hub team in front of the ring"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_28%]"
+          className="object-cover object-[center_65%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
         <Container className="relative pb-16 sm:pb-24">
