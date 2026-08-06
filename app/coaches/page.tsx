@@ -47,7 +47,11 @@ function CoachCard({ coach }: { coach: Coach }) {
             <span key={d}>{d}</span>
           ))}
         </p>
-        <p className="mt-4 flex-1 text-sm leading-relaxed text-steel-200">{coach.bio}</p>
+        <div className="mt-4 flex-1 space-y-3 text-sm leading-relaxed text-steel-200">
+          {coach.bio.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
         <a
           href={coach.instagramUrl}
           target="_blank"

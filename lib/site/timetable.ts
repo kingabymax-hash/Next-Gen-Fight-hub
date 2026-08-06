@@ -34,7 +34,7 @@ export const timetable: Day[] = [
     slots: [
       { start: "17:00", end: "18:00", name: "Juniors Muay Thai", discipline: "Muay Thai", coachId: "jamie" },
       { start: "18:00", end: "19:00", name: "Cadets Muay Thai", discipline: "Muay Thai", coachId: "jamie" },
-      { start: "19:00", end: "20:00", name: "Adult Muay Thai", discipline: "Muay Thai", coachId: "lpf" },
+      { start: "19:00", end: "20:00", name: "Mixed Ability Fundamentals", discipline: "Muay Thai", coachId: "lpf", note: "all levels" },
       { start: "20:00", end: "21:00", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
     ],
   },
@@ -54,7 +54,7 @@ export const timetable: Day[] = [
     label: "Wednesday",
     short: "Wed",
     slots: [
-      { start: "18:00", end: "19:00", name: "MMA", discipline: "MMA", coachId: "jacob", note: "all levels" },
+      { start: "18:00", end: "19:00", name: "MMA Grappling", discipline: "MMA", coachId: "jacob", note: "all levels" },
       { start: "19:30", end: "20:30", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
     ],
   },
@@ -116,6 +116,10 @@ export const classDescriptions: Record<string, string> = {
     "The starting point. Stance, guard and your first combinations in a friendly, no-pressure class. No experience needed.",
   "Adult Boxing":
     "Boxing with Top Rope Boxing. Footwork, combinations and conditioning, from your first jab through to sparring.",
+  "Mixed Ability Fundamentals":
+    "Striking fundamentals with Liam, open to every level. Footwork, timing and combinations drilled properly, whether it is your first session or your hundredth.",
+  "MMA Grappling":
+    "Grappling for MMA with Jacob. Takedowns, control and ground work for all levels, no experience needed.",
   MMA: "Mixed martial arts for all levels. Striking, takedowns and ground work brought together.",
   "Strength & Conditioning":
     "Build the engine behind your fight game. Power, endurance and mobility to back up your skills.",

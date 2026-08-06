@@ -37,7 +37,7 @@ export default function AboutPage() {
                 fitness, and competitors sharpening for the ring all train under the same roof.
               </p>
               <p>
-                The gym is led by head coach Hayden, who has spent fifteen years on the pads
+                The gym is led by head coach Hayden, who has spent thirteen years on the pads
                 across Muay Thai, boxing, K1 and MMA. Around him is a team of specialist coaches,
                 each bringing their own discipline, so you learn from people who have genuinely
                 done it.
