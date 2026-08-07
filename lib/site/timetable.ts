@@ -74,7 +74,6 @@ export const timetable: Day[] = [
     label: "Friday",
     short: "Fri",
     slots: [
-      { start: "17:00", end: "19:30", name: "Open Gym", discipline: "Open Gym" },
       { start: "19:30", end: "21:00", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
     ],
   },
