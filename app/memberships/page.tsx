@@ -7,7 +7,7 @@ import { isConfigured, paymentUrl } from "@/lib/site/payments";
 export const metadata: Metadata = {
   title: "Memberships",
   description:
-    "Next Gen Fight Hub memberships: Bronze £35, Silver £50, Muay Thai £80, Boxing £85, Gold £90, Platinum £100, plus a £10 drop-in and day pass. No joining fee.",
+    "Next Gen Fight Hub memberships: Bronze £35, Silver £50, Muay Thai £85, Boxing £85, Gold £90, Platinum £100, plus a £10 drop-in and day pass. No joining fee.",
 };
 
 export default function MembershipsPage() {

@@ -1,7 +1,7 @@
 /**
  * The eight paid offerings. Two shapes sit deliberately side by side:
  *   - general tiers (Bronze/Silver/Gold/Platinum), and
- *   - discipline-specific memberships (Muay Thai £80, Boxing £85).
+ *   - discipline-specific memberships (Muay Thai £85, Boxing £85).
  * Plus casual £10 drop-in / day pass. No joining fee. Prices confirmed by Hayden.
  *
  * `paymentKey` maps to lib/site/payments.ts. `featured` marks the recommended tier.
@@ -44,11 +44,11 @@ export const memberships: Membership[] = [
   {
     key: "muaythai",
     name: "Muay Thai",
-    price: 80,
+    price: 85,
     cadence: "month",
     group: "discipline",
-    summary: "Muay Thai only: 3 classes a week plus open gym.",
-    includes: ["3 Muay Thai classes per week", "Open gym access"],
+    summary: "Muay Thai only: 4 classes a week plus open gym.",
+    includes: ["4 Muay Thai classes per week", "Open gym access"],
   },
   {
     key: "boxing",
@@ -102,8 +102,12 @@ export const memberships: Membership[] = [
     price: 10,
     cadence: "one-off",
     group: "casual",
-    summary: "Use of the facilities for the day.",
-    includes: ["Full use of the facilities for one day", "No commitment"],
+    summary: "Open gym access for the day, weekends 10am to 4pm.",
+    includes: [
+      "Open gym access only",
+      "Saturday and Sunday, 10am to 4pm",
+      "No commitment",
+    ],
   },
 ];
 

@@ -83,6 +83,7 @@ export const timetable: Day[] = [
     label: "Saturday",
     short: "Sat",
     slots: [
+      { start: "10:00", end: "16:00", name: "Open Gym", discipline: "Open Gym" },
       { start: "10:00", end: "11:00", name: "Strength & Conditioning", discipline: "S&C", coachId: "evan" },
       { start: "12:00", end: "13:00", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
     ],
@@ -92,8 +93,8 @@ export const timetable: Day[] = [
     label: "Sunday",
     short: "Sun",
     slots: [
+      { start: "10:00", end: "16:00", name: "Open Gym", discipline: "Open Gym" },
       { start: "10:00", end: "11:30", name: "Adult Muay Thai", discipline: "Muay Thai", coachId: "lpf", note: "all levels welcome" },
-      { start: "11:30", end: "17:00", name: "Open Gym", discipline: "Open Gym" },
     ],
   },
 ];
@@ -150,12 +151,16 @@ export function slotRange(slot: ClassSlot): string {
   return `${toDisplayTime(slot.start)} - ${toDisplayTime(slot.end)}`;
 }
 
-/** Earliest open to latest close per day, for the Contact page opening hours. */
+/**
+ * Earliest open to latest close per day, for the Contact page opening hours.
+ * Compares every slot rather than the first and last, because overlapping slots
+ * (open gym running across a class) mean array order is not time order.
+ */
 export function openingHours(): { day: string; range: string }[] {
   return timetable.map((d) => {
     if (d.slots.length === 0) return { day: d.label, range: "Closed" };
-    const first = d.slots[0]!;
-    const last = d.slots[d.slots.length - 1]!;
-    return { day: d.label, range: `${toDisplayTime(first.start)} - ${toDisplayTime(last.end)}` };
+    const open = d.slots.reduce((a, s) => (s.start < a ? s.start : a), d.slots[0]!.start);
+    const close = d.slots.reduce((a, s) => (s.end > a ? s.end : a), d.slots[0]!.end);
+    return { day: d.label, range: `${toDisplayTime(open)} - ${toDisplayTime(close)}` };
   });
 }

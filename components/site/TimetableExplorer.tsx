@@ -169,8 +169,9 @@ export function TimetableExplorer() {
                   </p>
                 ) : (
                   <p className="text-sm text-steel-100">
-                    Open gym is included with membership, or grab a{" "}
-                    <span className="text-paper">£10</span> day pass, paid at the gym.
+                    Open gym is included with membership. Day passes are{" "}
+                    <span className="text-paper">£10</span>, weekends 10am to 4pm, paid at
+                    the gym.
                   </p>
                 )}
               </div>
