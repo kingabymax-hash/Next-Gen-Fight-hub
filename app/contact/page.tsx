@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container, PageHeader, Section } from "@/components/ui/layout";
 import { ContactForm } from "@/components/site/ContactForm";
 import { site } from "@/lib/site/config";
@@ -20,6 +21,23 @@ export default function ContactPage() {
         kicker="— Contact"
         title={<>Find us</>}
         lead="Drop in, message us, or come and watch a class. We are easy to find in Basildon."
+        aside={
+          /*
+           * logo-mark.png is the crest keyed out of its near-black tile (alpha built
+           * from the source luminance), so it sits on the page ink as the mark alone
+           * with no visible square edge. Decorative: the club name is already in the
+           * nav and the footer, so it stays out of the accessibility tree.
+           */
+          <Image
+            src="/images/logo-mark.png"
+            alt=""
+            aria-hidden="true"
+            width={640}
+            height={640}
+            sizes="(min-width: 1024px) 11rem, 7rem"
+            className="h-28 w-28 lg:h-44 lg:w-44"
+          />
+        }
       />
 
       <Section>

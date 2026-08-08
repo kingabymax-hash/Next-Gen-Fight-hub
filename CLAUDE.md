@@ -30,6 +30,12 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
    accents. All photography ships in full colour: there is no `grayscale` class anywhere in
    the site, including the home hero, the Coaches portraits and the Contact map embed. Do not
    reintroduce it.
+
+   **One sanctioned exception:** the membership tier stars in
+   `components/site/TierStars.tsx` are struck in bronze, silver, gold and platinum, because
+   the tiers are named after those metals and a grey pip repeated four times does not read
+   as a ladder. Hayden asked for this deliberately. Keep the colour inside that component;
+   do not let metallics spread to buttons, borders, tags or text anywhere else.
 6. **No em dashes in user-facing copy.** Use commas, colons, or parentheses.
 7. **Never fabricate coach credentials.** Bios are truthful and discipline-based; real
    detail comes from Hayden only. Clem, Slim, Keif and Krizi (the Top Rope Boxing four)

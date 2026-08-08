@@ -1,6 +1,7 @@
 import { type Membership, priceLabel } from "@/lib/site/memberships";
 import { isConfigured, paymentUrl } from "@/lib/site/payments";
 import { buttonClasses } from "@/components/ui/Button";
+import { TierStars } from "@/components/site/TierStars";
 
 /**
  * One membership/pass card. The CTA is a plain link to the Stripe Payment Link when
@@ -77,6 +78,10 @@ export function MembershipCard({ membership }: { membership: Membership }) {
       <p className="mt-3 text-center text-[0.7rem] uppercase tracking-[0.15em] text-steel-500">
         {inPerson ? `${priceLabel(membership)} · paid in person` : `${priceLabel(membership)} · no joining fee`}
       </p>
+
+      {membership.stars ? (
+        <TierStars tier={membership.key} count={membership.stars} className="mt-5" />
+      ) : null}
     </div>
   );
 }

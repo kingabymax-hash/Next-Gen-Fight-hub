@@ -5,6 +5,11 @@
  * Plus casual £10 drop-in / day pass. No joining fee. Prices confirmed by Hayden.
  *
  * `paymentKey` maps to lib/site/payments.ts. `featured` marks the recommended tier.
+ *
+ * `stars` is the rank badge shown under a general tier: Bronze 1, Silver 2, Gold 3 and
+ * Platinum a full 5, so the jump to the top tier reads as a jump rather than one more
+ * notch. Discipline and casual options carry none: they are a different shape of thing,
+ * not a rung on the same ladder.
  */
 import type { PaymentKey } from "@/lib/site/payments";
 
@@ -19,6 +24,7 @@ export type Membership = {
   group: MembershipGroup;
   summary: string;
   includes: string[];
+  stars?: number; // rank badge, general tiers only
   featured?: boolean;
 };
 
@@ -31,6 +37,7 @@ export const memberships: Membership[] = [
     group: "tier",
     summary: "Use of the facilities and open gym.",
     includes: ["Full use of the facilities", "Open gym access"],
+    stars: 1,
   },
   {
     key: "silver",
@@ -40,6 +47,7 @@ export const memberships: Membership[] = [
     group: "tier",
     summary: "Facilities plus one class a week.",
     includes: ["Full use of the facilities", "1 class per week", "Open gym access"],
+    stars: 2,
   },
   {
     key: "muaythai",
@@ -71,6 +79,7 @@ export const memberships: Membership[] = [
     group: "tier",
     summary: "Facilities plus five classes a week.",
     includes: ["Full use of the facilities", "5 classes per week", "Open gym access"],
+    stars: 3,
   },
   {
     key: "platinum",
@@ -85,6 +94,7 @@ export const memberships: Membership[] = [
       "Boxing and MMA included",
       "Open gym access",
     ],
+    stars: 5,
     featured: true,
   },
   {
