@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container, PageHeader, Section } from "@/components/ui/layout";
 import { MembershipCard } from "@/components/site/MembershipCard";
 import { membershipsByGroup } from "@/lib/site/memberships";
 import { isConfigured, paymentUrl } from "@/lib/site/payments";
+import { gymImages } from "@/lib/site/media";
 
 export const metadata: Metadata = {
   title: "Memberships",
@@ -21,8 +23,31 @@ export default function MembershipsPage() {
         lead="No joining fee, no lock-in. Not sure yet? Try any class for £10 and see the room for yourself."
       />
 
-      {/* General tiers */}
+      {/* What every membership gets you, before the prices */}
       <Section>
+        <Container>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[gymImages.floor, gymImages.ring, gymImages.kitWall].map((photo) => (
+              <div key={photo.src} className="relative aspect-[4/3] w-full overflow-hidden bg-ink-soft">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(min-width: 640px) 31vw, 92vw"
+                  className="object-cover object-center"
+                />
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-steel-200">
+            Every membership gets you the same room: a full size ring, a wall of heavy bags,
+            matted floor, and pads and gloves to borrow while you find your feet.
+          </p>
+        </Container>
+      </Section>
+
+      {/* General tiers */}
+      <Section divide>
         <Container>
           <p className="kicker mb-8">The tiers</p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

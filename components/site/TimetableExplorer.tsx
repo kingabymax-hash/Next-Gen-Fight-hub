@@ -52,6 +52,9 @@ export function TimetableExplorer() {
   }, [selected, close]);
 
   const coach = selected?.slot.coachId ? coachById(selected.slot.coachId) : undefined;
+  // Boxing is taken by the Top Rope team rather than one coach, but it is still a
+  // staffed class: it gets the same "who takes it" block and £10 trial line.
+  const takenBy = coach?.name ?? selected?.slot.coachTeam;
 
   return (
     <>
@@ -82,7 +85,7 @@ export function TimetableExplorer() {
                         <DisciplineTag slot={slot} />
                       </span>
                       <span className="mt-1.5 block text-[0.7rem] uppercase tracking-[0.15em] text-steel-500 group-hover:text-steel-300">
-                        {slotCoach ? slotCoach.name : "Open mat"}
+                        {slotCoach?.name ?? slot.coachTeam ?? "Open mat"}
                         <span aria-hidden="true"> +</span>
                       </span>
                     </button>
@@ -151,18 +154,20 @@ export function TimetableExplorer() {
                 {slotDescription(selected.slot)}
               </p>
 
-              {coach ? (
+              {takenBy ? (
                 <div className="border-t border-paper/10 pt-4">
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-steel-500">
                     Your coach
                   </p>
-                  <p className="mt-1 text-base text-paper">{coach.name}</p>
-                  <p className="mt-0.5 text-xs text-steel-400">{coach.disciplines.join(" · ")}</p>
+                  <p className="mt-1 text-base text-paper">{takenBy}</p>
+                  <p className="mt-0.5 text-xs text-steel-400">
+                    {(coach?.disciplines ?? [selected.slot.discipline]).join(" · ")}
+                  </p>
                 </div>
               ) : null}
 
               <div className="border border-paper/15 bg-ink/40 p-4">
-                {coach ? (
+                {takenBy ? (
                   <p className="text-sm text-steel-100">
                     First time? You can try this class for <span className="text-paper">£10</span>,
                     paid on the day at the gym. No need to book online.
@@ -180,7 +185,7 @@ export function TimetableExplorer() {
                 <Link href="/memberships" className={buttonClasses("primary", true)}>
                   See memberships
                 </Link>
-                {coach ? (
+                {takenBy ? (
                   <Link href="/coaches" className={buttonClasses("outline", true)}>
                     Meet the coaches
                   </Link>

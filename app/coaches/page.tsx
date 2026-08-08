@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Container, PageHeader, Section } from "@/components/ui/layout";
-import { coaches, coachMonogram, type Coach } from "@/lib/site/coaches";
+import { inHouseCoaches, topRopeCoaches, coachMonogram, type Coach } from "@/lib/site/coaches";
 import { InstagramIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
@@ -52,15 +52,17 @@ function CoachCard({ coach }: { coach: Coach }) {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
-        <a
-          href={coach.instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper"
-        >
-          <InstagramIcon className="h-4 w-4" />
-          {coach.instagramHandle}
-        </a>
+        {coach.instagramUrl ? (
+          <a
+            href={coach.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper"
+          >
+            <InstagramIcon className="h-4 w-4" />
+            {coach.instagramHandle}
+          </a>
+        ) : null}
       </div>
     </article>
   );
@@ -78,8 +80,36 @@ export default function CoachesPage() {
       <Section>
         <Container>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {coaches.map((coach) => (
-              <CoachCard key={coach.name} coach={coach} />
+            {inHouseCoaches.map((coach) => (
+              <CoachCard key={coach.id} coach={coach} />
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Boxing is run by Top Rope Boxing: four coaches, one partner team. */}
+      <Section divide>
+        <Container>
+          <div className="mb-10 max-w-2xl">
+            <p className="kicker mb-4">Boxing</p>
+            <h2 className="text-3xl sm:text-5xl">Top Rope Boxing</h2>
+            <p className="mt-5 text-base leading-relaxed text-steel-200">
+              Our boxing runs in partnership with Top Rope Boxing, a team of four coaches
+              taking four sessions a week here, from your first jab through to sparring.
+            </p>
+            <a
+              href="https://www.instagram.com/toprope.boxing/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper"
+            >
+              <InstagramIcon className="h-4 w-4" />
+              @toprope.boxing
+            </a>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {topRopeCoaches.map((coach) => (
+              <CoachCard key={coach.id} coach={coach} />
             ))}
           </div>
         </Container>

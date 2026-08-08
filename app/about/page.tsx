@@ -3,12 +3,32 @@ import Image from "next/image";
 import { Container, PageHeader, Section } from "@/components/ui/layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { site } from "@/lib/site/config";
+import { gymImages, teamPhoto } from "@/lib/site/media";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "Next Gen Fight Hub is a Muay Thai, Boxing and MMA gym in Basildon, Essex, founded by head coach Hayden. Fitness, technique, community.",
 };
+
+/**
+ * The tour: what someone actually walks into. Captions say what the thing is, so the
+ * page works as an answer to "what is this place like" rather than a mood board.
+ */
+const tour = [
+  { photo: gymImages.ring, caption: "A full size ring, used every night of the week." },
+  { photo: gymImages.bagsWide, caption: "A long row of heavy bags, so nobody waits their turn." },
+  { photo: gymImages.fromTheRing, caption: "Matted floor for pad work, drilling and grappling." },
+  { photo: gymImages.kitWall, caption: "Pads, gloves and shins on the shelf. Borrow ours until you buy your own." },
+  { photo: gymImages.lounge, caption: "Somewhere to sit, catch your breath and stay a while." },
+  { photo: gymImages.reception, caption: "Reception, where your first £10 class starts." },
+];
+
+const details = [
+  { photo: gymImages.bags, caption: "The bag room" },
+  { photo: gymImages.changing, caption: "Proper changing rooms and showers" },
+  { photo: gymImages.corner, caption: "Round timer on the wall" },
+];
 
 const ethos = [
   { word: "Train.", line: "Every level, every night of the week. Juniors to fighters, first-timers to pros." },
@@ -47,16 +67,68 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-soft">
+              <div className="relative aspect-[3/2] w-full overflow-hidden bg-ink-soft">
                 <Image
-                  src="/images/hero.jpg"
-                  alt="The Next Gen Fight Hub team together in the gym in front of the ring"
+                  src={gymImages.floor.src}
+                  alt={gymImages.floor.alt}
                   fill
                   sizes="(min-width: 1024px) 48vw, 100vw"
                   className="object-cover object-center"
                 />
               </div>
             </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* The tour: what the room actually holds */}
+      <Section divide>
+        <Container>
+          <div className="max-w-2xl">
+            <p className="kicker mb-4">The gym</p>
+            <h2 className="text-3xl sm:text-5xl">Have a look round.</h2>
+            <p className="mt-5 text-base leading-relaxed text-steel-200">
+              One room in Basildon, kitted out properly. A full ring, a wall of bags, matted
+              floor and all the kit you need to get started.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {tour.map((item) => (
+              <figure key={item.photo.src}>
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-soft">
+                  <Image
+                    src={item.photo.src}
+                    alt={item.photo.alt}
+                    fill
+                    sizes="(min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <figcaption className="mt-4 text-sm leading-relaxed text-steel-200">
+                  {item.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-3">
+            {details.map((item) => (
+              <figure key={item.photo.src}>
+                <div className="relative aspect-[3/4] w-full overflow-hidden bg-ink-soft">
+                  <Image
+                    src={item.photo.src}
+                    alt={item.photo.alt}
+                    fill
+                    sizes="(min-width: 640px) 31vw, 92vw"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <figcaption className="mt-4 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-steel-400">
+                  {item.caption}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </Container>
       </Section>
@@ -72,6 +144,37 @@ export default function AboutPage() {
                 <p className="mt-4 text-sm leading-relaxed text-steel-200">{e.line}</p>
               </div>
             ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* The people, not the room */}
+      <Section divide>
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-ink-soft">
+                <Image
+                  src={teamPhoto.src}
+                  alt={teamPhoto.alt}
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+            </div>
+            <div className="space-y-5 text-base leading-relaxed text-steel-200 lg:col-span-7">
+              <p className="kicker">The room is only half of it</p>
+              <p>
+                The other half is who is in it. Juniors who turn up on a Monday and never
+                stop, adults who came for the fitness and stayed for the craft, and fighters
+                getting ready for a corner. They all train in the same room, on the same mats.
+              </p>
+              <p>
+                Nobody here started good. Walk in, say hello, and someone will show you where
+                to stand.
+              </p>
+            </div>
           </div>
         </Container>
       </Section>

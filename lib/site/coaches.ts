@@ -6,7 +6,12 @@
  * `bio` is an array of paragraphs, rendered one <p> per entry.
  *
  * `photo` is a path under /public/images when supplied; when null the card renders a
- * clean monogram placeholder.
+ * clean monogram placeholder. Portraits are cropped to 4:5 before they land in
+ * /public/images/coaches, so the card can centre-crop them safely.
+ *
+ * `team` names the partner brand a coach coaches under (Top Rope Boxing run our
+ * boxing). Those coaches are grouped on the Coaches page under the team's own
+ * heading and Instagram, so they do not each need a handle of their own.
  */
 
 export type Coach = {
@@ -14,12 +19,15 @@ export type Coach = {
   name: string;
   disciplines: string[];
   bio: string[]; // one entry per paragraph
-  instagramHandle: string;
-  instagramUrl: string;
+  instagramHandle?: string;
+  instagramUrl?: string;
   photo: string | null;
   headCoach?: boolean;
-  isTeam?: boolean; // a partner brand/team rather than one person
+  team?: string; // partner brand this coach coaches under
 };
+
+/** Boxing at Next Gen is run by Top Rope Boxing, a team of four coaches. */
+export const TOP_ROPE = "Top Rope Boxing";
 
 export const coaches: Coach[] = [
   {
@@ -73,17 +81,6 @@ export const coaches: Coach[] = [
     photo: "/images/coaches/evan.jpg",
   },
   {
-    id: "toprope",
-    name: "Top Rope Boxing",
-    disciplines: ["Boxing"],
-    // Placeholder line: awaiting real copy from Hayden.
-    bio: ["Boxing. Four proper boxing sessions a week, first jab to sparring."],
-    instagramHandle: "@toprope.boxing",
-    instagramUrl: "https://www.instagram.com/toprope.boxing/",
-    photo: "/images/coaches/toprope.jpg",
-    isTeam: true,
-  },
-  {
     id: "jacob",
     name: "Jacob Gifford",
     disciplines: ["MMA", "Grappling"],
@@ -96,7 +93,49 @@ export const coaches: Coach[] = [
     instagramUrl: "https://www.instagram.com/jaccob_gifford/",
     photo: "/images/coaches/jacob.jpg",
   },
+
+  // Top Rope Boxing: the four coaches who run our boxing sessions. Bios below are
+  // deliberate placeholders, not claims. Hayden is supplying the real copy (and each
+  // coach's own Instagram); replace them then, and never invent records or titles.
+  {
+    id: "clem",
+    name: "Clem",
+    disciplines: ["Boxing"],
+    bio: ["Boxing coach with Top Rope Boxing, who run the boxing programme at Next Gen Fight Hub. Full bio coming soon."],
+    photo: "/images/coaches/clem.jpg",
+    team: TOP_ROPE,
+  },
+  {
+    id: "slim",
+    name: "Slim",
+    disciplines: ["Boxing"],
+    bio: ["Boxing coach with Top Rope Boxing, who run the boxing programme at Next Gen Fight Hub. Full bio coming soon."],
+    photo: "/images/coaches/slim.jpg",
+    team: TOP_ROPE,
+  },
+  {
+    id: "keith",
+    name: "Keith",
+    disciplines: ["Boxing"],
+    bio: ["Boxing coach with Top Rope Boxing, who run the boxing programme at Next Gen Fight Hub. Full bio coming soon."],
+    photo: "/images/coaches/keith.jpg",
+    team: TOP_ROPE,
+  },
+  {
+    id: "krizi",
+    name: "Krizi",
+    disciplines: ["Boxing"],
+    bio: ["Boxing coach with Top Rope Boxing, who run the boxing programme at Next Gen Fight Hub. Full bio coming soon."],
+    photo: "/images/coaches/krizi.jpg",
+    team: TOP_ROPE,
+  },
 ];
+
+/** Coaches on Hayden's own staff, shown first on the Coaches page. */
+export const inHouseCoaches = coaches.filter((c) => !c.team);
+
+/** Coaches who run boxing here under the Top Rope Boxing banner. */
+export const topRopeCoaches = coaches.filter((c) => c.team === TOP_ROPE);
 
 /** Look up a coach by their stable id (used by the timetable). */
 export function coachById(id: string): Coach | undefined {

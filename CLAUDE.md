@@ -20,9 +20,11 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
    Stripe SDK dependency or a checkout backend.
 3. **Email is a side-effect, never a dependency.** `lib/email/send.ts#safeSendEmail` never
    throws; the contact form degrades to a "DM us" fallback if it fails or is unconfigured.
-4. **Content is data, not markup.** Timetable, memberships, coaches, and site config live in
-   typed modules under `lib/site/`. Opening hours derive from the timetable so they can't
-   disagree. Update data there, never hard-code it into a page.
+4. **Content is data, not markup.** Timetable, memberships, coaches, photography and site
+   config live in typed modules under `lib/site/`. Opening hours derive from the timetable so
+   they can't disagree. Update data there, never hard-code it into a page. Photos are named
+   exports in `lib/site/media.ts` (`gymImages`, `teamPhoto`, `galleryImages`) carrying their
+   own alt text and real pixel dimensions; never write a bare `/images/...` path into a page.
 5. **Monochrome UI, colour photography.** All chrome/text/backgrounds are black / white /
    cool-grey only (tokens in `tailwind.config.ts`: `ink`, `paper`, `steel`); no colour UI
    accents. All photography ships in full colour: there is no `grayscale` class anywhere in
@@ -30,7 +32,25 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
    reintroduce it.
 6. **No em dashes in user-facing copy.** Use commas, colons, or parentheses.
 7. **Never fabricate coach credentials.** Bios are truthful and discipline-based; real
-   detail comes from Hayden only.
+   detail comes from Hayden only. Clem, Slim, Keith and Krizi (the Top Rope Boxing four)
+   are on holding lines until Hayden sends their real bios and Instagram handles: replace
+   the copy then, do not embellish it now.
+8. **Boxing is Top Rope Boxing, a team of four.** They are individual coaches carrying
+   `team: TOP_ROPE` in `lib/site/coaches.ts`, grouped under their own heading on the
+   Coaches page. Timetable boxing slots use `coachTeam`, not `coachId`.
+
+## Image pipeline
+
+Raw drops live in the gitignored `imagery/` folder; only web-optimised copies under
+`public/images/` are tracked. To add one:
+
+```bash
+ffmpeg -i "imagery/<file>" -vf "scale='if(gt(iw,ih),min(1800,iw),-2)':'if(gt(iw,ih),-2,min(1800,ih))'" -q:v 3 public/images/<dir>/<name>.jpg
+ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0 public/images/<dir>/<name>.jpg
+```
+
+Then add it to `lib/site/media.ts` with those exact dimensions. Coach portraits are
+cropped to 4:5 first so the cards can centre-crop safely.
 
 ## Conventions
 

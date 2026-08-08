@@ -5,7 +5,9 @@
  *
  * Times are 24h "HH:MM". `discipline` drives the small tag shown on each class.
  * `coachId` links a slot to a coach in lib/site/coaches.ts (open-gym slots have none),
- * and the Timetable page uses it to show who takes each class.
+ * and the Timetable page uses it to show who takes each class. Boxing is run by the
+ * Top Rope Boxing team rather than one named coach, so those slots carry `coachTeam`
+ * instead; a slot has one or the other, never both.
  */
 
 export type Discipline = "Muay Thai" | "Boxing" | "MMA" | "K1" | "Open Gym" | "S&C";
@@ -16,6 +18,7 @@ export type ClassSlot = {
   name: string;
   discipline: Discipline;
   coachId?: string; // matches a coach id; omitted for unstaffed open gym
+  coachTeam?: string; // a partner team takes this class instead of one named coach
   note?: string; // e.g. "TRB", "all levels", "beginners welcome"
 };
 
@@ -35,7 +38,7 @@ export const timetable: Day[] = [
       { start: "17:00", end: "18:00", name: "Juniors Muay Thai", discipline: "Muay Thai", coachId: "jamie" },
       { start: "18:00", end: "19:00", name: "Cadets Muay Thai", discipline: "Muay Thai", coachId: "jamie" },
       { start: "19:00", end: "20:00", name: "Mixed Ability Fundamentals", discipline: "Muay Thai", coachId: "lpf", note: "all levels" },
-      { start: "20:00", end: "21:00", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
+      { start: "20:00", end: "21:00", name: "Adult Boxing", discipline: "Boxing", coachTeam: "Top Rope Boxing", note: "TRB" },
     ],
   },
   {
@@ -55,7 +58,7 @@ export const timetable: Day[] = [
     short: "Wed",
     slots: [
       { start: "18:00", end: "19:00", name: "MMA Grappling", discipline: "MMA", coachId: "jacob", note: "all levels" },
-      { start: "19:30", end: "20:30", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
+      { start: "19:30", end: "20:30", name: "Adult Boxing", discipline: "Boxing", coachTeam: "Top Rope Boxing", note: "TRB" },
     ],
   },
   {
@@ -74,7 +77,7 @@ export const timetable: Day[] = [
     label: "Friday",
     short: "Fri",
     slots: [
-      { start: "19:30", end: "21:00", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
+      { start: "19:30", end: "21:00", name: "Adult Boxing", discipline: "Boxing", coachTeam: "Top Rope Boxing", note: "TRB" },
     ],
   },
   {
@@ -84,7 +87,7 @@ export const timetable: Day[] = [
     slots: [
       { start: "10:00", end: "16:00", name: "Open Gym", discipline: "Open Gym" },
       { start: "10:00", end: "11:00", name: "Strength & Conditioning", discipline: "S&C", coachId: "evan" },
-      { start: "12:00", end: "13:00", name: "Adult Boxing", discipline: "Boxing", coachId: "toprope", note: "TRB" },
+      { start: "12:00", end: "13:00", name: "Adult Boxing", discipline: "Boxing", coachTeam: "Top Rope Boxing", note: "TRB" },
     ],
   },
   {
