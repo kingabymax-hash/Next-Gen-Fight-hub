@@ -114,11 +114,11 @@ export const coaches: Coach[] = [
     team: TOP_ROPE,
   },
   {
-    id: "keith",
-    name: "Keith",
+    id: "keif",
+    name: "Keif",
     disciplines: ["Boxing"],
     bio: ["Boxing coach with Top Rope Boxing, who run the boxing programme at Next Gen Fight Hub. Full bio coming soon."],
-    photo: "/images/coaches/keith.jpg",
+    photo: "/images/coaches/keif.jpg",
     team: TOP_ROPE,
   },
   {

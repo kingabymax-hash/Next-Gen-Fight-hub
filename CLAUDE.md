@@ -32,7 +32,7 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
    reintroduce it.
 6. **No em dashes in user-facing copy.** Use commas, colons, or parentheses.
 7. **Never fabricate coach credentials.** Bios are truthful and discipline-based; real
-   detail comes from Hayden only. Clem, Slim, Keith and Krizi (the Top Rope Boxing four)
+   detail comes from Hayden only. Clem, Slim, Keif and Krizi (the Top Rope Boxing four)
    are on holding lines until Hayden sends their real bios and Instagram handles: replace
    the copy then, do not embellish it now.
 8. **Boxing is Top Rope Boxing, a team of four.** They are individual coaches carrying
