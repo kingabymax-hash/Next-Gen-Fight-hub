@@ -23,7 +23,7 @@ export default function HomePage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_65%] grayscale"
+          className="object-cover object-[center_65%]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
         <Container className="relative pb-16 sm:pb-24">

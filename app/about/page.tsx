@@ -49,8 +49,8 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-soft">
                 <Image
-                  src="/images/gym-hex.jpg"
-                  alt="Pad work under the lights in the ring at Next Gen Fight Hub"
+                  src="/images/hero.jpg"
+                  alt="The Next Gen Fight Hub team together in the gym in front of the ring"
                   fill
                   sizes="(min-width: 1024px) 48vw, 100vw"
                   className="object-cover object-center"

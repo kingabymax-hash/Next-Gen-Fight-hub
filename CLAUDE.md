@@ -25,9 +25,9 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
    disagree. Update data there, never hard-code it into a page.
 5. **Monochrome UI, colour photography.** All chrome/text/backgrounds are black / white /
    cool-grey only (tokens in `tailwind.config.ts`: `ink`, `paper`, `steel`); no colour UI
-   accents. Photography now ships in colour (remove the `grayscale` class), with these
-   deliberate exceptions, which stay `grayscale`: the home hero, the Coaches page portraits
-   (a uniform team wall), and the Contact map embed (avoids clashing with the dark theme).
+   accents. All photography ships in full colour: there is no `grayscale` class anywhere in
+   the site, including the home hero, the Coaches portraits and the Contact map embed. Do not
+   reintroduce it.
 6. **No em dashes in user-facing copy.** Use commas, colons, or parentheses.
 7. **Never fabricate coach credentials.** Bios are truthful and discipline-based; real
    detail comes from Hayden only.

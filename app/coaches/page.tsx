@@ -21,7 +21,7 @@ function CoachCard({ coach }: { coach: Coach }) {
             alt={`${coach.name}, ${coach.disciplines.join(" / ")} coach at Next Gen Fight Hub`}
             fill
             sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-            className="object-cover object-center grayscale"
+            className="object-cover object-center"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">

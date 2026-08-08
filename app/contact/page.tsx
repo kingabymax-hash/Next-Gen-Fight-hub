@@ -77,7 +77,7 @@ export default function ContactPage() {
           </div>
 
           {/* Map */}
-          <div className="mt-16 aspect-[16/9] w-full overflow-hidden border border-paper/15 grayscale">
+          <div className="mt-16 aspect-[16/9] w-full overflow-hidden border border-paper/15">
             <iframe
               title="Map to Next Gen Fight Hub"
               src={site.mapEmbedSrc}
