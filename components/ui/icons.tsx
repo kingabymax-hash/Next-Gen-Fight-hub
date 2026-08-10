@@ -39,6 +39,23 @@ export function FacebookIcon({ className = "h-5 w-5" }: IconProps) {
   );
 }
 
+export function WhatsAppIcon({ className = "h-5 w-5" }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M3.5 20.5l1.3-4.4A8.2 8.2 0 1 1 8 19.3l-4.5 1.2Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 8.3c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .6.5l.6 1.4c.1.2 0 .4-.1.5l-.4.5c-.1.2-.2.3-.1.5.3.6 1.3 1.7 2.3 2.1.2.1.4.1.5 0l.5-.5c.2-.2.3-.2.5-.1l1.4.7c.2.1.3.2.3.4 0 .5-.3 1.2-.8 1.4-.5.2-1.2.3-2.5-.2-1.9-.8-3.6-2.7-4-3.7-.4-1-.4-1.9.1-2.5l.1-.1Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export function ArrowIcon({ className = "h-4 w-4" }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">

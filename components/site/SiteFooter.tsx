@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { site, addressOneLine } from "@/lib/site/config";
 import { navLinks } from "@/components/site/nav";
-import { InstagramIcon, TikTokIcon, FacebookIcon } from "@/components/ui/icons";
+import { InstagramIcon, TikTokIcon, FacebookIcon, WhatsAppIcon } from "@/components/ui/icons";
 
 export function SiteFooter() {
   return (
@@ -23,6 +23,15 @@ export function SiteFooter() {
               <br />
               {site.address.postcode}
             </address>
+            <a
+              href={site.whatsapp.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-steel-200 hover:text-paper"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              WhatsApp {site.whatsapp.display}
+            </a>
             <div className="mt-6 flex items-center gap-5 text-steel-300">
               <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-paper" aria-label="Instagram">
                 <InstagramIcon />

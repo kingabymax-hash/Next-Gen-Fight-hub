@@ -50,10 +50,16 @@ export function ContactForm() {
 
       {state.status === "error" && state.message ? (
         <p className="text-sm text-steel-100">
-          {state.message}{" "}
-          <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-paper">
-            {site.socials.handle}
-          </a>
+          {state.message}
+          {/* Field errors are the user's to fix; only a send failure needs the fallback. */}
+          {state.errors ? null : (
+            <>
+              {" "}
+              <a href={site.whatsapp.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-paper">
+                {site.whatsapp.display}
+              </a>
+            </>
+          )}
         </p>
       ) : null}
 

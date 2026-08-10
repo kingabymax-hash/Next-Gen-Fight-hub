@@ -68,6 +68,14 @@ export const coaches: Coach[] = [
     photo: "/images/coaches/jamie.jpg",
   },
   {
+    id: "charlie",
+    name: "Charlie McCormick",
+    disciplines: ["Muay Thai"],
+    // Placeholder line: awaiting real copy and an Instagram handle from Hayden.
+    bio: ["Muay Thai coach at Next Gen Fight Hub. Full bio coming soon."],
+    photo: "/images/coaches/charlie.jpg",
+  },
+  {
     id: "evan",
     name: "Evan Jays",
     disciplines: ["Muay Thai"],
@@ -123,7 +131,7 @@ export const coaches: Coach[] = [
   },
   {
     id: "krizi",
-    name: "Krizi",
+    name: "K",
     disciplines: ["Boxing"],
     bio: ["Boxing coach with Top Rope Boxing, who run the boxing programme at Next Gen Fight Hub. Full bio coming soon."],
     photo: "/images/coaches/krizi.jpg",

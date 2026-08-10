@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Container, PageHeader, Section } from "@/components/ui/layout";
+import { ButtonLink } from "@/components/ui/Button";
 import { ContactForm } from "@/components/site/ContactForm";
 import { site } from "@/lib/site/config";
 import { openingHours } from "@/lib/site/timetable";
-import { InstagramIcon, TikTokIcon, FacebookIcon } from "@/components/ui/icons";
+import { InstagramIcon, TikTokIcon, FacebookIcon, WhatsAppIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -20,7 +21,7 @@ export default function ContactPage() {
       <PageHeader
         kicker="— Contact"
         title={<>Find us</>}
-        lead="Drop in, message us, or come and watch a class. We are easy to find in Basildon."
+        lead="Drop in, message us on WhatsApp, or come and watch a class. We are easy to find in Basildon."
         aside={
           /*
            * logo-mark.png is the crest keyed out of its near-black tile (alpha built
@@ -71,6 +72,23 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ul>
+
+              <p className="kicker mb-4 mt-12">WhatsApp</p>
+              <p className="max-w-sm text-base leading-relaxed text-steel-200">
+                The quickest way to reach us. Message the gym and Hayden will get back to you.
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-5">
+                <ButtonLink href={site.whatsapp.url} variant="primary" external>
+                  <WhatsAppIcon className="mr-3 h-4 w-4" />
+                  Message us on WhatsApp
+                </ButtonLink>
+                <a
+                  href={`tel:+${site.whatsapp.e164}`}
+                  className="text-sm text-steel-200 hover:text-paper"
+                >
+                  {site.whatsapp.display}
+                </a>
+              </div>
 
               <p className="kicker mb-4 mt-12">Follow</p>
               <div className="flex items-center gap-5 text-steel-300">

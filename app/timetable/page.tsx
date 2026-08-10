@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Container, PageHeader, Section } from "@/components/ui/layout";
 import { ButtonLink } from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/ui/icons";
 import { TimetableExplorer } from "@/components/site/TimetableExplorer";
+import { site } from "@/lib/site/config";
 
 export const metadata: Metadata = {
   title: "Timetable",
@@ -31,8 +33,9 @@ export default function TimetablePage() {
             <ButtonLink href="/memberships" variant="primary">
               See memberships
             </ButtonLink>
-            <ButtonLink href="/contact" variant="outline">
-              Find the gym
+            <ButtonLink href={site.whatsapp.url} variant="outline" external>
+              <WhatsAppIcon className="mr-3 h-4 w-4" />
+              Message us on WhatsApp
             </ButtonLink>
           </div>
         </Container>

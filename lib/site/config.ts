@@ -24,6 +24,17 @@ export const site = {
     "https://www.google.com/maps?q=Unit+5+Bowlers+Croft+Basildon+SS14+3DU&output=embed",
   mapLink: "https://www.google.com/maps/search/?api=1&query=Unit+5+Bowlers+Croft+Basildon+SS14+3DU",
 
+  /*
+   * The gym WhatsApp. `display` is how it is written for a human, `e164` is the same
+   * number in international form for wa.me and tel: links. Every "message us" button
+   * on the site points at `url`, which opens WhatsApp with the greeting pre-filled.
+   */
+  whatsapp: {
+    display: "07763 169961",
+    e164: "447763169961",
+    url: "https://wa.me/447763169961?text=Hi%20Next%20Gen%2C%20I%27d%20like%20to%20book%20a%20class",
+  },
+
   socials: {
     instagram: "https://www.instagram.com/nextgenfighthub/",
     tiktok: "https://www.tiktok.com/@nextgenfighthub",

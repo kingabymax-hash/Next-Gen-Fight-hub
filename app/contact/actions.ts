@@ -45,7 +45,7 @@ export async function submitContact(
   if (!contactEmailConfigured()) {
     return {
       status: "error",
-      message: "Our contact form is not live yet. Please reach us on Instagram for now.",
+      message: "Our contact form is not live yet. Please message us on WhatsApp for now:",
     };
   }
 
@@ -59,7 +59,7 @@ export async function submitContact(
   if (!ok) {
     return {
       status: "error",
-      message: "Something went wrong sending your message. Please DM us on Instagram instead.",
+      message: "Something went wrong sending your message. Please message us on WhatsApp instead:",
     };
   }
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, Section } from "@/components/ui/layout";
 import { ButtonLink } from "@/components/ui/Button";
-import { ArrowIcon } from "@/components/ui/icons";
+import { ArrowIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { site } from "@/lib/site/config";
 import { timetable, slotRange } from "@/lib/site/timetable";
 import { coaches } from "@/lib/site/coaches";
@@ -176,8 +176,9 @@ export default function HomePage() {
             <ButtonLink href="/memberships" variant="primary">
               Try a class for £10
             </ButtonLink>
-            <ButtonLink href="/contact" variant="outline">
-              Find the gym
+            <ButtonLink href={site.whatsapp.url} variant="outline" external>
+              <WhatsAppIcon className="mr-3 h-4 w-4" />
+              Message us on WhatsApp
             </ButtonLink>
           </div>
         </Container>
