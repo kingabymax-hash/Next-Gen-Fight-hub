@@ -86,7 +86,7 @@ export default function HomePage() {
               <p className="kicker mb-4">Timetable</p>
               <h2 className="text-3xl sm:text-5xl">{today.label} at Next Gen</h2>
             </div>
-            <Link href="/timetable" className="hidden items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper sm:inline-flex">
+            <Link href="/timetable" className="hidden items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember sm:inline-flex">
               Full week <ArrowIcon />
             </Link>
           </div>
@@ -102,7 +102,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <Link href="/timetable" className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper sm:hidden">
+          <Link href="/timetable" className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember sm:hidden">
             Full week <ArrowIcon />
           </Link>
         </Container>
@@ -137,11 +137,11 @@ export default function HomePage() {
             {coaches.map((c) => (
               <span key={c.name} className="font-display text-3xl uppercase tracking-tight text-paper sm:text-5xl">
                 {c.name}
-                <span className="mx-3 text-steel-600">/</span>
+                <span className="mx-3 text-ember/50">/</span>
               </span>
             ))}
           </div>
-          <Link href="/coaches" className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper">
+          <Link href="/coaches" className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember">
             Meet the coaches <ArrowIcon />
           </Link>
         </Container>
@@ -176,7 +176,7 @@ export default function HomePage() {
             <ButtonLink href="/memberships" variant="primary">
               Try a class for £10
             </ButtonLink>
-            <ButtonLink href={site.whatsapp.url} variant="outline" external>
+            <ButtonLink href={site.whatsapp.url} variant="whatsapp" external>
               <WhatsAppIcon className="mr-3 h-4 w-4" />
               Message us on WhatsApp
             </ButtonLink>

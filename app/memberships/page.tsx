@@ -105,7 +105,7 @@ export default function MembershipsPage() {
                 href={paymentUrl("portal")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-semibold uppercase tracking-[0.18em] text-steel-200 underline-offset-4 hover:text-paper hover:underline"
+                className="text-sm font-semibold uppercase tracking-[0.18em] text-steel-200 underline-offset-4 transition-colors hover:text-ember hover:underline"
               >
                 Manage membership
               </a>

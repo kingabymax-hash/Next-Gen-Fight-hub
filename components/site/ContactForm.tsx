@@ -8,7 +8,7 @@ import { site } from "@/lib/site/config";
 const initial: ContactState = { status: "idle" };
 
 const fieldClass =
-  "w-full border border-paper/20 bg-transparent px-4 py-3 text-sm text-paper placeholder:text-steel-500 focus:border-paper focus:outline-none";
+  "w-full border border-paper/20 bg-transparent px-4 py-3 text-sm text-paper placeholder:text-steel-500 focus:border-ember focus:outline-none";
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContact, initial);
@@ -29,7 +29,7 @@ export function ContactForm() {
           Name
         </label>
         <input id="name" name="name" type="text" autoComplete="name" className={fieldClass} placeholder="Your name" />
-        {state.errors?.name ? <p className="mt-1.5 text-xs text-steel-300">{state.errors.name}</p> : null}
+        {state.errors?.name ? <p className="mt-1.5 text-xs text-ember">{state.errors.name}</p> : null}
       </div>
 
       <div>
@@ -37,7 +37,7 @@ export function ContactForm() {
           Email
         </label>
         <input id="email" name="email" type="email" autoComplete="email" className={fieldClass} placeholder="you@email.com" />
-        {state.errors?.email ? <p className="mt-1.5 text-xs text-steel-300">{state.errors.email}</p> : null}
+        {state.errors?.email ? <p className="mt-1.5 text-xs text-ember">{state.errors.email}</p> : null}
       </div>
 
       <div>
@@ -45,7 +45,7 @@ export function ContactForm() {
           Message
         </label>
         <textarea id="message" name="message" rows={5} className={fieldClass} placeholder="What would you like to know?" />
-        {state.errors?.message ? <p className="mt-1.5 text-xs text-steel-300">{state.errors.message}</p> : null}
+        {state.errors?.message ? <p className="mt-1.5 text-xs text-ember">{state.errors.message}</p> : null}
       </div>
 
       {state.status === "error" && state.message ? (

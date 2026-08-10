@@ -32,11 +32,19 @@ export function SiteHeader() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`text-xs font-semibold uppercase tracking-[0.18em] transition-colors ${
+                aria-current={active ? "page" : undefined}
+                className={`relative text-xs font-semibold uppercase tracking-[0.18em] transition-colors ${
                   active ? "text-paper" : "text-steel-300 hover:text-paper"
                 }`}
               >
                 {l.label}
+                {/* Ember underbar marks the page you are on, without moving the row. */}
+                {active ? (
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-1.5 left-0 h-0.5 w-full bg-ember"
+                  />
+                ) : null}
               </Link>
             );
           })}
@@ -76,15 +84,21 @@ export function SiteHeader() {
       {open ? (
         <nav id="mobile-menu" className="border-t border-paper/10 bg-ink lg:hidden" aria-label="Mobile">
           <div className="flex flex-col px-6 py-4">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="border-b border-paper/5 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-steel-200 hover:text-paper"
-              >
-                {l.label}
-              </Link>
-            ))}
+            {navLinks.map((l) => {
+              const active = pathname === l.href;
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`border-b border-paper/5 py-4 text-sm font-semibold uppercase tracking-[0.18em] ${
+                    active ? "text-ember" : "text-steel-200 hover:text-paper"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
             <Link href="/memberships" className={`${buttonClasses("primary", true)} mt-6`}>
               Join
             </Link>

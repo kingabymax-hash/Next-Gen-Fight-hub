@@ -140,6 +140,8 @@ export default function AboutPage() {
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {ethos.map((e) => (
               <div key={e.word}>
+                {/* Short ember rule, the one bit of colour in the ethos grid. */}
+                <span aria-hidden="true" className="mb-5 block h-0.5 w-8 bg-ember" />
                 <h2 className="font-display text-4xl text-paper">{e.word}</h2>
                 <p className="mt-4 text-sm leading-relaxed text-steel-200">{e.line}</p>
               </div>
@@ -190,7 +192,7 @@ export default function AboutPage() {
                 href={site.padGuy.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-paper underline underline-offset-4 hover:text-steel-100"
+                className="text-paper underline underline-offset-4 transition-colors hover:text-ember"
               >
                 The Pad Guy Programme
               </a>

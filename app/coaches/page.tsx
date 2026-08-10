@@ -34,7 +34,7 @@ function CoachCard({ coach }: { coach: Coach }) {
           </div>
         )}
         {coach.headCoach ? (
-          <span className="absolute left-4 top-4 bg-paper px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-ink">
+          <span className="absolute left-4 top-4 bg-ember px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-ink">
             Head coach
           </span>
         ) : null}
@@ -57,7 +57,7 @@ function CoachCard({ coach }: { coach: Coach }) {
             href={coach.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper"
+            className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember"
           >
             <InstagramIcon className="h-4 w-4" />
             {coach.instagramHandle}
@@ -101,7 +101,7 @@ export default function CoachesPage() {
               href="https://www.instagram.com/toprope.boxing/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper"
+              className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember"
             >
               <InstagramIcon className="h-4 w-4" />
               @toprope.boxing

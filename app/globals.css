@@ -16,14 +16,22 @@
   }
 
   ::selection {
-    @apply bg-paper text-ink;
+    @apply bg-ember text-ink;
+  }
+
+  /* One accent focus ring for the whole site: visible on the dark ground, and only
+     for keyboard users, so it never fires on a mouse click. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ember ring-offset-2 ring-offset-ink;
   }
 }
 
 @layer components {
-  /* Small letter-spaced kicker label, e.g. "— TIMETABLE". */
+  /* Small letter-spaced kicker label, e.g. "— TIMETABLE". Carries the ember accent:
+     it is the smallest, most repeated bit of type on the site, so colour here reads
+     as a thread running through the pages rather than a splash on any one of them. */
   .kicker {
-    @apply font-sans text-xs font-semibold uppercase tracking-kicker text-steel-300;
+    @apply font-sans text-xs font-semibold uppercase tracking-kicker text-ember;
   }
 
   /* Thin hairline used to divide sections on the dark ground. */

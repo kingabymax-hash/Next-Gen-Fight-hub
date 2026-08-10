@@ -33,7 +33,7 @@ export default function TimetablePage() {
             <ButtonLink href="/memberships" variant="primary">
               See memberships
             </ButtonLink>
-            <ButtonLink href={site.whatsapp.url} variant="outline" external>
+            <ButtonLink href={site.whatsapp.url} variant="whatsapp" external>
               <WhatsAppIcon className="mr-3 h-4 w-4" />
               Message us on WhatsApp
             </ButtonLink>

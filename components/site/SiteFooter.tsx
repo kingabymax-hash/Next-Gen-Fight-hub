@@ -29,17 +29,17 @@ export function SiteFooter() {
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 text-sm text-steel-200 hover:text-paper"
             >
-              <WhatsAppIcon className="h-4 w-4" />
+              <WhatsAppIcon className="h-4 w-4 text-whatsapp" />
               WhatsApp {site.whatsapp.display}
             </a>
             <div className="mt-6 flex items-center gap-5 text-steel-300">
-              <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-paper" aria-label="Instagram">
+              <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ember" aria-label="Instagram">
                 <InstagramIcon />
               </a>
-              <a href={site.socials.tiktok} target="_blank" rel="noopener noreferrer" className="hover:text-paper" aria-label="TikTok">
+              <a href={site.socials.tiktok} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ember" aria-label="TikTok">
                 <TikTokIcon />
               </a>
-              <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-paper" aria-label="Facebook">
+              <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ember" aria-label="Facebook">
                 <FacebookIcon />
               </a>
               <span className="text-xs uppercase tracking-[0.18em] text-steel-400">

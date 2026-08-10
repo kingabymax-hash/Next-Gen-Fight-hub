@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 Guidance for AI agents (and humans) working in this repo. Read this before editing.
 
@@ -25,21 +25,17 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
    they can't disagree. Update data there, never hard-code it into a page. Photos are named
    exports in `lib/site/media.ts` (`gymImages`, `teamPhoto`, `galleryImages`) carrying their
    own alt text and real pixel dimensions; never write a bare `/images/...` path into a page.
-5. **Near-monochrome UI, colour photography.** The ground is still black / white /
-   cool-grey (`ink`, `paper`, `steel` in `tailwind.config.ts`). All photography ships in
-   full colour: there is no `grayscale` class anywhere in the site, including the home
-   hero, the Coaches portraits and the Contact map embed. Do not reintroduce it.
+5. **Monochrome UI, colour photography.** All chrome/text/backgrounds are black / white /
+   cool-grey only (tokens in `tailwind.config.ts`: `ink`, `paper`, `steel`); no colour UI
+   accents. All photography ships in full colour: there is no `grayscale` class anywhere in
+   the site, including the home hero, the Coaches portraits and the Contact map embed. Do not
+   reintroduce it.
 
-   **Exactly three sanctioned colours, and no fourth without Hayden:**
-   - `ember` (warm orange) is the house accent, added because Hayden asked for subtle
-     colour across the site. It is for *small* things only: kickers, active nav state,
-     focus rings, hover states, form errors, the featured membership card, the head-coach
-     badge, short rules. Never a large fill, never body copy, never a whole button.
-   - `whatsapp` green is only ever the WhatsApp buttons (`variant="whatsapp"` in
-     `components/ui/Button.tsx`), because the channel has to be recognisable.
-   - The membership tier stars in `components/site/TierStars.tsx` are struck in bronze,
-     silver, gold and platinum, because the tiers are named after those metals. Keep the
-     metallics inside that component.
+   **One sanctioned exception:** the membership tier stars in
+   `components/site/TierStars.tsx` are struck in bronze, silver, gold and platinum, because
+   the tiers are named after those metals and a grey pip repeated four times does not read
+   as a ladder. Hayden asked for this deliberately. Keep the colour inside that component;
+   do not let metallics spread to buttons, borders, tags or text anywhere else.
 6. **No em dashes in user-facing copy.** Use commas, colons, or parentheses.
 7. **Never fabricate coach credentials.** Bios are truthful and discipline-based; real
    detail comes from Hayden only. Clem, Slim, Keif and K (the Top Rope Boxing four), plus

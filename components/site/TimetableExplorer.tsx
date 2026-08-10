@@ -73,7 +73,7 @@ export function TimetableExplorer() {
                     <button
                       type="button"
                       onClick={() => setSelected({ dayLabel: day.label, slot })}
-                      className="group w-full border-l border-paper/15 pl-4 text-left transition-colors hover:border-paper focus:border-paper focus:outline-none"
+                      className="group w-full border-l border-paper/15 pl-4 text-left transition-colors hover:border-ember focus-visible:border-ember"
                     >
                       <span className="block font-display text-lg leading-none text-paper">
                         {slotRange(slot)}

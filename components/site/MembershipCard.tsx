@@ -18,11 +18,11 @@ export function MembershipCard({ membership }: { membership: Membership }) {
   return (
     <div
       className={`flex flex-col border p-8 ${
-        featured ? "border-paper bg-paper/[0.04]" : "border-paper/15"
+        featured ? "border-ember bg-ember/[0.05]" : "border-paper/15"
       }`}
     >
       {featured ? (
-        <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-paper">
+        <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-ember">
           Most popular
         </p>
       ) : null}
@@ -43,7 +43,10 @@ export function MembershipCard({ membership }: { membership: Membership }) {
       <ul className="mt-6 flex-1 space-y-2.5 text-sm text-steel-200">
         {membership.includes.map((item) => (
           <li key={item} className="flex gap-3">
-            <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 bg-steel-300" />
+            <span
+              aria-hidden="true"
+              className={`mt-2 h-1 w-1 shrink-0 ${featured ? "bg-ember" : "bg-steel-300"}`}
+            />
             {item}
           </li>
         ))}

@@ -58,7 +58,7 @@ export default function ContactPage() {
                 href={site.mapLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 hover:text-paper"
+                className="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember"
               >
                 Open in Google Maps
               </a>
@@ -78,7 +78,7 @@ export default function ContactPage() {
                 The quickest way to reach us. Message the gym and Hayden will get back to you.
               </p>
               <div className="mt-5 flex flex-wrap items-center gap-5">
-                <ButtonLink href={site.whatsapp.url} variant="primary" external>
+                <ButtonLink href={site.whatsapp.url} variant="whatsapp" external>
                   <WhatsAppIcon className="mr-3 h-4 w-4" />
                   Message us on WhatsApp
                 </ButtonLink>
@@ -92,13 +92,13 @@ export default function ContactPage() {
 
               <p className="kicker mb-4 mt-12">Follow</p>
               <div className="flex items-center gap-5 text-steel-300">
-                <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-paper" aria-label="Instagram">
+                <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ember" aria-label="Instagram">
                   <InstagramIcon />
                 </a>
-                <a href={site.socials.tiktok} target="_blank" rel="noopener noreferrer" className="hover:text-paper" aria-label="TikTok">
+                <a href={site.socials.tiktok} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ember" aria-label="TikTok">
                   <TikTokIcon />
                 </a>
-                <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-paper" aria-label="Facebook">
+                <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ember" aria-label="Facebook">
                   <FacebookIcon />
                 </a>
                 <span className="text-xs uppercase tracking-[0.18em] text-steel-400">{site.socials.handle}</span>

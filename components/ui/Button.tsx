@@ -5,11 +5,13 @@ import Link from "next/link";
  * uppercase, letter-spaced, monochrome. One source of truth so the whole site
  * restyles from here.
  *
- * - primary: solid white on ink (the loud CTA)
- * - outline: hairline border, paper text, fills on hover
- * - ghost:   quiet text link with an underline reveal
+ * - primary:  solid white on ink (the loud CTA)
+ * - outline:  hairline border, paper text, fills on hover
+ * - ghost:    quiet text link with an underline reveal
+ * - whatsapp: WhatsApp's own green, reserved for buttons that open WhatsApp so the
+ *             channel is recognised at a glance. Do not reuse it for anything else.
  */
-type Variant = "primary" | "outline" | "ghost";
+type Variant = "primary" | "outline" | "ghost" | "whatsapp";
 
 export function buttonClasses(variant: Variant = "primary", full = false): string {
   const base =
@@ -18,9 +20,11 @@ export function buttonClasses(variant: Variant = "primary", full = false): strin
   const styles =
     variant === "primary"
       ? "bg-paper text-ink hover:bg-steel-100"
-      : variant === "ghost"
-        ? "px-0 py-1 text-steel-200 hover:text-paper"
-        : "border border-paper/25 text-paper hover:bg-paper hover:text-ink";
+      : variant === "whatsapp"
+        ? "bg-whatsapp text-ink hover:bg-whatsapp-dark"
+        : variant === "ghost"
+          ? "px-0 py-1 text-steel-200 hover:text-paper"
+          : "border border-paper/25 text-paper hover:bg-paper hover:text-ink";
   return `${base} ${width} ${styles}`;
 }
 
