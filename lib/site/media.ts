@@ -124,14 +124,14 @@ export const galleryImages: Photo[] = [
   {
     src: "/images/media/pads-kick-2.jpg",
     alt: "A fighter throwing a high kick onto the pads under the hexagon lights",
-    width: 1042,
+    width: 1028,
     height: 1800,
   },
   {
-    src: "/images/media/fight-night-walkout.jpg",
-    alt: "A Next Gen fighter walking out to the ring on fight night",
-    width: 1185,
-    height: 1064,
+    src: "/images/media/boxing-drill.jpg",
+    alt: "Boxing coaching on the body pad beside the heavy bags at Next Gen Fight Hub",
+    width: 930,
+    height: 1214,
   },
   {
     src: "/images/media/pads-close.jpg",
@@ -160,7 +160,7 @@ export const galleryImages: Photo[] = [
   {
     src: "/images/media/pads-punch.jpg",
     alt: "A fighter driving a straight punch into the pads",
-    width: 1014,
+    width: 1010,
     height: 1800,
   },
   {
