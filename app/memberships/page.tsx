@@ -9,7 +9,7 @@ import { gymImages } from "@/lib/site/media";
 export const metadata: Metadata = {
   title: "Memberships",
   description:
-    "Next Gen Fight Hub memberships: Bronze £35, Silver £50, Muay Thai £85, Boxing £85, Gold £90, Platinum £100, plus a £10 drop-in and day pass. No joining fee.",
+    "Next Gen Fight Hub memberships: Bronze £35, Silver £50, Muay Thai £85, Boxing £85, Gold £90, Platinum £100, Juniors £60 and Cadets £65, plus a £10 drop-in and day pass. No joining fee.",
 };
 
 export default function MembershipsPage() {
@@ -68,6 +68,22 @@ export default function MembershipsPage() {
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
             {membershipsByGroup.discipline.map((m) => (
+              <MembershipCard key={m.key} membership={m} />
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Juniors and Cadets */}
+      <Section divide>
+        <Container>
+          <p className="kicker mb-3">Juniors and Cadets</p>
+          <p className="mb-8 max-w-xl text-sm leading-relaxed text-steel-200">
+            Muay Thai for younger members, Monday, Tuesday and Thursday evenings. Juniors
+            train first, Cadets straight after.
+          </p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
+            {membershipsByGroup.youth.map((m) => (
               <MembershipCard key={m.key} membership={m} />
             ))}
           </div>

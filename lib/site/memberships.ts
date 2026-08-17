@@ -1,8 +1,10 @@
 /**
- * The eight paid offerings. Two shapes sit deliberately side by side:
- *   - general tiers (Bronze/Silver/Gold/Platinum), and
- *   - discipline-specific memberships (Muay Thai £85, Boxing £85).
- * Plus casual £10 drop-in / day pass. No joining fee. Prices confirmed by Hayden.
+ * The paid offerings. Several shapes sit deliberately side by side:
+ *   - general tiers (Bronze/Silver/Gold/Platinum),
+ *   - discipline-specific memberships (Muay Thai £85, Boxing £85), and
+ *   - youth memberships (Juniors £60, Cadets £65), which are Muay Thai only.
+ * Plus casual £10 drop-in / day pass. No joining fee. Prices confirmed by Hayden
+ * and matched to the live products in his Stripe account.
  *
  * `paymentKey` maps to lib/site/payments.ts. `featured` marks the recommended tier.
  *
@@ -14,7 +16,7 @@
 import type { PaymentKey } from "@/lib/site/payments";
 
 export type Cadence = "month" | "one-off";
-export type MembershipGroup = "tier" | "discipline" | "casual";
+export type MembershipGroup = "tier" | "discipline" | "youth" | "casual";
 
 export type Membership = {
   key: PaymentKey;
@@ -57,6 +59,32 @@ export const memberships: Membership[] = [
     group: "discipline",
     summary: "Muay Thai only: 4 classes a week plus open gym.",
     includes: ["4 Muay Thai classes per week", "Open gym access"],
+  },
+  {
+    key: "juniors",
+    name: "Juniors",
+    price: 60,
+    cadence: "month",
+    group: "youth",
+    summary: "Muay Thai for our youngest group, three evenings a week.",
+    includes: [
+      "3 Juniors Muay Thai classes per week",
+      "Monday, Tuesday and Thursday, 5pm to 6pm",
+      "Always supervised",
+    ],
+  },
+  {
+    key: "cadets",
+    name: "Cadets",
+    price: 65,
+    cadence: "month",
+    group: "youth",
+    summary: "Muay Thai for older juniors and teens, three evenings a week.",
+    includes: [
+      "3 Cadets Muay Thai classes per week",
+      "Monday, Tuesday and Thursday, 6pm to 7pm",
+      "Technique, pads and controlled drilling",
+    ],
   },
   {
     key: "boxing",
@@ -124,6 +152,7 @@ export const memberships: Membership[] = [
 export const membershipsByGroup = {
   tier: memberships.filter((m) => m.group === "tier"),
   discipline: memberships.filter((m) => m.group === "discipline"),
+  youth: memberships.filter((m) => m.group === "youth"),
   casual: memberships.filter((m) => m.group === "casual"),
 };
 
