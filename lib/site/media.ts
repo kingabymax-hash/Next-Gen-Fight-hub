@@ -134,6 +134,12 @@ export const galleryImages: Photo[] = [
     height: 1214,
   },
   {
+    src: "/images/media/juniors-mitts.jpg",
+    alt: "Head coach Hayden holding the mitts and belly pad for a junior member on the gym floor",
+    width: 1280,
+    height: 1600,
+  },
+  {
     src: "/images/media/pads-close.jpg",
     alt: "Close up of a fighter working combinations on the pads",
     width: 1184,
@@ -158,6 +164,12 @@ export const galleryImages: Photo[] = [
     height: 710,
   },
   {
+    src: "/images/media/pads-kick-shield.jpg",
+    alt: "Head coach Hayden holding the kick shield for a fighter throwing a head kick under the hexagon lights",
+    width: 1280,
+    height: 1600,
+  },
+  {
     src: "/images/media/pads-punch.jpg",
     alt: "A fighter driving a straight punch into the pads",
     width: 1010,
@@ -180,6 +192,12 @@ export const galleryImages: Photo[] = [
     alt: "A Next Gen fighter and coach after a win on fight night",
     width: 1426,
     height: 1800,
+  },
+  {
+    src: "/images/media/ring-mitts.jpg",
+    alt: "Head coach Hayden on the mitts in the ring in his Next Gen coach jacket",
+    width: 1290,
+    height: 1584,
   },
   {
     src: "/images/media/ring-portrait.jpg",
@@ -210,6 +228,12 @@ export const galleryImages: Photo[] = [
     alt: "Kicking the pads in the ring at Next Gen Fight Hub",
     width: 1218,
     height: 1532,
+  },
+  {
+    src: "/images/media/wraps-coach.jpg",
+    alt: "Head coach Hayden wrapping a fighter's hands before a session",
+    width: 1290,
+    height: 1582,
   },
   {
     src: "/images/media/fight-night-medal.jpg",
