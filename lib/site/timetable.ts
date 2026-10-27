@@ -96,7 +96,7 @@ export const timetable: Day[] = [
     short: "Sun",
     slots: [
       { start: "10:00", end: "16:00", name: "Open Gym", discipline: "Open Gym" },
-      { start: "10:00", end: "11:30", name: "Adult Muay Thai", discipline: "Muay Thai", coachId: "lpf", note: "all levels welcome" },
+      { start: "11:00", end: "12:00", name: "Sparring", discipline: "Muay Thai", note: "all levels welcome" },
     ],
   },
 ];
@@ -113,6 +113,8 @@ export const classDescriptions: Record<string, string> = {
     "Muay Thai for older juniors and teens. Real technique, pad work and controlled drilling to lay down the fundamentals.",
   "Adult Muay Thai":
     "All-levels adult Muay Thai. Technique, pads and conditioning every session. Beginners are welcome.",
+  Sparring:
+    "Controlled sparring, welcome to all levels. Put your technique to work with a partner at a pace that suits you.",
   "Adult Advanced Muay Thai":
     "For experienced students. Sharper combinations, clinch work and controlled sparring at a higher pace.",
   "Adult Beginner Muay Thai":
