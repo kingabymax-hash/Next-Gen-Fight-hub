@@ -137,16 +137,18 @@ export default function HomePage() {
       {/* COACHES teaser */}
       <Section divide>
         <Container>
-          <p className="kicker mb-4">The team</p>
-          <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+          <span aria-hidden="true" className="block h-1 w-12 bg-ember" />
+          <h2 className="mt-6 font-sans text-4xl font-bold normal-case tracking-tight sm:text-5xl">The team</h2>
+          <ul className="mt-8 grid grid-cols-2 gap-x-4 sm:gap-x-8 sm:grid-cols-3 lg:grid-cols-5">
             {coaches.map((c) => (
-              <span key={c.name} className="font-display text-3xl uppercase tracking-tight text-paper sm:text-5xl">
-                {c.name}
-                <span className="mx-3 text-ember/50">/</span>
-              </span>
+              <li key={c.name} className="border-b border-paper/15 py-5">
+                <Link href="/coaches" className="text-lg font-semibold tracking-tight text-paper transition-colors hover:text-ember sm:text-2xl">
+                  {c.name}
+                </Link>
+              </li>
             ))}
-          </div>
-          <Link href="/coaches" className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember">
+          </ul>
+          <Link href="/coaches" className="mt-10 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember">
             Meet the coaches <ArrowIcon />
           </Link>
         </Container>
