@@ -38,18 +38,30 @@ export function TierStars({
   tier,
   count,
   className = "",
+  inline = false,
+  idSuffix = "",
 }: {
   tier: PaymentKey;
   count: number;
   className?: string;
+  /** Render as a <span> so it can sit inside a paragraph or table cell. */
+  inline?: boolean;
+  /**
+   * Makes the gradient id unique. Needed where the same tier repeats inside parts of
+   * the page that may be hidden (display: none), since a gradient defined in a hidden
+   * subtree does not paint anywhere.
+   */
+  idSuffix?: string;
 }) {
-  const tone = TONES[tier];
-  if (!tone || count < 1) return null;
+  const base = TONES[tier];
+  if (!base || count < 1) return null;
+  const tone = idSuffix ? { ...base, id: `${base.id}-${idSuffix}` } : base;
+  const Tag = inline ? "span" : "p";
 
   const label = `${count} star${count === 1 ? "" : "s"}`;
 
   return (
-    <p
+    <Tag
       className={`flex items-center justify-center gap-1.5 ${className}`}
       aria-label={label}
     >
@@ -75,6 +87,6 @@ export function TierStars({
           <path d={STAR_PATH} fill={`url(#${tone.id})`} />
         </svg>
       ))}
-    </p>
+    </Tag>
   );
 }

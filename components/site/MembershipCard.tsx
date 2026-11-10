@@ -1,16 +1,16 @@
+import Link from "next/link";
 import { type Membership, priceLabel } from "@/lib/site/memberships";
-import { isConfigured, paymentUrl } from "@/lib/site/payments";
+import { isConfigured } from "@/lib/site/payments";
 import { buttonClasses } from "@/components/ui/Button";
 import { TierStars } from "@/components/site/TierStars";
 
 /**
- * One membership/pass card. The CTA is a plain link to the Stripe Payment Link when
- * configured; until Hayden's Stripe account is wired it shows a graceful "coming
- * soon" state instead of a dead link.
+ * One membership/pass card. The CTA opens /join/[key], which collects the member's
+ * details and then hands over to the Stripe Payment Link. Until a link is configured
+ * it shows a graceful "coming soon" state instead of a dead link.
  */
 export function MembershipCard({ membership }: { membership: Membership }) {
   const live = isConfigured(membership.key);
-  const href = paymentUrl(membership.key);
   const featured = membership.featured;
   // Casual £10 passes are bought in person on the day, never online.
   const inPerson = membership.group === "casual";
@@ -61,14 +61,12 @@ export function MembershipCard({ membership }: { membership: Membership }) {
             Pay at the gym
           </span>
         ) : live ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/join/${membership.key}`}
             className={buttonClasses(featured ? "primary" : "outline", true)}
           >
-            {membership.cadence === "month" ? "Join now" : "Buy now"}
-          </a>
+            Join now
+          </Link>
         ) : (
           <span
             className={`${buttonClasses("outline", true)} pointer-events-none opacity-45`}

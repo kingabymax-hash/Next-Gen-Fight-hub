@@ -13,11 +13,17 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
 
 ## Core invariants — do not violate
 
-1. **Static-first marketing site.** No user accounts, no database, no auth, no middleware
-   gate. Every page is a static Server Component except the one contact-form action.
+1. **Static-first marketing site.** No user accounts, no database, no middleware gate.
+   Every public page is a static Server Component except the one contact-form action
+   (the `/join/[key]` details step is static too: its form posts nothing to us). The one
+   exception is `/admin`, Hayden's private, read-only members dashboard
+   (`app/(admin)/`, spec `specs/2026-11-09-member-dashboard/`): dynamic, never indexed,
+   gated by one shared password and a signed session cookie. Still no user accounts.
 2. **Payments are Stripe hosted Payment Links only.** Plain external URLs in
-   `lib/site/payments.ts`. The app holds NO Stripe secret and runs NO webhook. Do not add a
-   Stripe SDK dependency or a checkout backend.
+   `lib/site/payments.ts`, reached through `/join/[key]`, which packs the buyer's details
+   into `client_reference_id` (`lib/site/joinDetails.ts`). The app holds one Stripe key
+   (`STRIPE_SECRET_KEY`), used only by `lib/admin/stripe.ts`, which may only send GET
+   requests. No webhook, no Stripe SDK, no checkout backend, no write calls to Stripe.
 3. **Email is a side-effect, never a dependency.** `lib/email/send.ts#safeSendEmail` never
    throws; the contact form degrades to a "DM us" fallback if it fails or is unconfigured.
 4. **Content is data, not markup.** Timetable, memberships, coaches, photography and site

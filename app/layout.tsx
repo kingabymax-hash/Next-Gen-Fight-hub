@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Archivo_Black, Inter } from "next/font/google";
+import { Anton, Changa_One, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site/config";
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { SiteFooter } from "@/components/site/SiteFooter";
 
 // Display: ultra-bold condensed for big uppercase headings, matching the flyer
 // wordmark energy. Body: Inter.
@@ -13,9 +11,9 @@ const display = Anton({
   variable: "--font-display",
   display: "swap",
 });
-// Brand: heavy, slightly extended block grotesque matching the emblem's
-// "NEXT GEN / FIGHT HUB" lettering. Used only for the header/footer wordmark.
-const brand = Archivo_Black({
+// Brand: heavy, flared, slightly condensed face, the closest free match to the
+// emblem's "NEXT GEN / FIGHT HUB" lettering. Used only for the header/footer wordmark.
+const brand = Changa_One({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-brand",
@@ -55,11 +53,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${brand.variable} ${body.variable}`}>
-      <body>
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
-      </body>
+      {/* The public site's header and footer live in app/(site)/layout.tsx so the
+          private /admin area can carry its own shell. */}
+      <body>{children}</body>
     </html>
   );
 }

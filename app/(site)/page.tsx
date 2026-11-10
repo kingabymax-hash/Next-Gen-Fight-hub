@@ -6,7 +6,7 @@ import { ArrowIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { site } from "@/lib/site/config";
 import { timetable, slotRange } from "@/lib/site/timetable";
 import { coaches } from "@/lib/site/coaches";
-import { galleryImages } from "@/lib/site/media";
+import { galleryImages, heroPhoto } from "@/lib/site/media";
 
 const disciplines = ["Muay Thai", "Boxing", "K1", "MMA", "Strength & Conditioning", "Open Gym"];
 
@@ -15,51 +15,56 @@ export default function HomePage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative flex min-h-[88vh] items-end overflow-hidden">
-        <Image
-          src="/images/hero.jpg"
-          alt="The full Next Gen Fight Hub team, juniors to adults, gathered in the gym in front of the ring"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_55%]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
-        <Container className="relative pb-16 sm:pb-24">
-          <p className="kicker mb-6">Muay Thai · Boxing · K1 · MMA · Basildon</p>
-          <h1 className="max-w-4xl text-6xl leading-[0.9] sm:text-8xl lg:text-9xl">
-            Train. Hard.
-            <br />
-            Fight. Evolve.
-          </h1>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-steel-100">
-            A fight gym for everyone in Basildon. Juniors to adults, first-timers to fighters.
-            Try any class for £10 and see the room for yourself.
-          </p>
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <ButtonLink href="/memberships" variant="primary">
-              Try a class for £10
-            </ButtonLink>
-            <ButtonLink href="/timetable" variant="outline">
-              View the timetable
-            </ButtonLink>
+      {/* HERO: words on the left, the team on the right (stacked on phones) */}
+      <section className="relative overflow-hidden">
+        {/* Photo. Phones: a band on top. Desktop: the right ~60%, fading into the ink
+            on its left and bottom edges so the headline can overlap it slightly. */}
+        <div className="relative aspect-[5/4] w-full overflow-hidden sm:aspect-[16/9] lg:absolute lg:inset-y-0 lg:right-0 lg:aspect-auto lg:w-[62%]">
+          <Image
+            src={heroPhoto.src}
+            alt={heroPhoto.alt}
+            fill
+            priority
+            sizes="(min-width: 1024px) 62vw, 100vw"
+            className="origin-bottom scale-[1.2] object-cover object-bottom lg:scale-[1.15]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/20" />
+          <div className="absolute inset-0 hidden bg-gradient-to-r from-ink via-ink/40 to-transparent lg:block lg:[background-size:45%_100%] lg:bg-no-repeat" />
+        </div>
+
+        <Container className="relative -mt-16 pb-10 sm:-mt-24 lg:mt-0 lg:flex lg:min-h-[44rem] lg:flex-col lg:justify-center lg:py-20">
+          <div>
+            <p className="kicker mb-6">Basildon · Muay Thai · Boxing · K1 · MMA</p>
+            <h1 className="text-6xl leading-[0.9] sm:text-8xl lg:whitespace-nowrap xl:text-9xl">
+              Train. Hard.
+              <br />
+              Fight. Evolve.
+            </h1>
+            <p className="mt-6 max-w-md text-base lg:max-w-sm leading-relaxed text-steel-100 sm:text-lg">
+              A fight gym for everyone in Basildon. Juniors to adults, first-timers to fighters.
+            </p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <ButtonLink href="/memberships" variant="primary">
+                Try a class for £10
+              </ButtonLink>
+              <ButtonLink href="/timetable" variant="outline">
+                View the timetable
+              </ButtonLink>
+            </div>
           </div>
         </Container>
-      </section>
 
-      {/* DISCIPLINES marquee-ish strip */}
-      <div className="border-y border-paper/10 py-6">
-        <Container>
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
+        {/* Disciplines strip, sitting on the bottom of the hero */}
+        <Container className="relative">
+          <ul className="flex flex-wrap items-center gap-x-10 gap-y-3 border-t border-paper/15 py-6">
             {disciplines.map((d) => (
-              <li key={d} className="font-display text-lg uppercase tracking-tight text-steel-300">
+              <li key={d} className="font-display text-lg uppercase tracking-wide text-paper">
                 {d}
               </li>
             ))}
           </ul>
         </Container>
-      </div>
+      </section>
 
       {/* INTRO */}
       <Section>

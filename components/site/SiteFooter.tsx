@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Brand + address */}
           <div>
-            <p className="font-brand text-xl uppercase leading-none tracking-tight text-paper">
+            <p className="font-brand text-2xl uppercase leading-none tracking-wide text-paper">
               Next Gen <span className="text-steel-300">Fight Hub</span>
             </p>
             <p className="mt-4 text-sm uppercase tracking-[0.2em] text-steel-400">
@@ -79,7 +79,12 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-2 border-t border-paper/10 pt-6 text-xs uppercase tracking-[0.18em] text-steel-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>{site.name}</p>
+          <p>
+            {site.name}
+            <Link href="/privacy" className="ml-5 transition-colors hover:text-paper">
+              Privacy
+            </Link>
+          </p>
           <p className="normal-case tracking-normal text-steel-500">{addressOneLine()}</p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { submitContact, type ContactState } from "@/app/contact/actions";
+import { submitContact, type ContactState } from "@/app/(site)/contact/actions";
 import { buttonClasses } from "@/components/ui/Button";
 import { site } from "@/lib/site/config";
 

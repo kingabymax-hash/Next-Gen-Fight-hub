@@ -107,6 +107,14 @@ export const gymImages = {
   },
 } satisfies Record<string, Photo>;
 
+/** Home hero: the whole gym, juniors to adults, in front of the ring. */
+export const heroPhoto: Photo = {
+  src: "/images/hero.jpg",
+  alt: "The full Next Gen Fight Hub team, juniors to adults, gathered in the gym in front of the ring",
+  width: 1290,
+  height: 850,
+};
+
 /** The full team shot, used where the point is the people rather than the room. */
 export const teamPhoto: Photo = {
   src: "/images/team.jpg",
