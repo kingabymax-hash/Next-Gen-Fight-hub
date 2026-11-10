@@ -95,7 +95,7 @@ export default async function JoinPage({ params }: { params: Promise<{ key: stri
             </aside>
 
             <div className="max-w-lg">
-              <p className="kicker mb-6">Your details</p>
+              <h2 className="section-heading mb-6">Your details</h2>
               <JoinForm paymentLink={paymentUrl(membership.key)} youth={youth} />
             </div>
           </div>

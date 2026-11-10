@@ -9,10 +9,15 @@
     @apply bg-ink font-sans text-paper antialiased;
   }
 
-  h1,
+  /* Page titles keep the condensed display face. Every other heading follows the
+     Contact page: Inter, semibold, sentence case. */
+  h1 {
+    @apply font-display uppercase tracking-tight;
+  }
+
   h2,
   h3 {
-    @apply font-display uppercase tracking-tight;
+    @apply font-sans font-semibold tracking-tight;
   }
 
   ::selection {
@@ -27,11 +32,16 @@
 }
 
 @layer components {
-  /* Small letter-spaced kicker label, e.g. "— TIMETABLE". Carries the ember accent:
-     it is the smallest, most repeated bit of type on the site, so colour here reads
-     as a thread running through the pages rather than a splash on any one of them. */
+  /* Ember label above a heading, e.g. "Timetable", styled as on the Contact page:
+     sentence case, semibold. Colour here reads as a thread running through the
+     pages rather than a splash on any one of them. */
   .kicker {
-    @apply font-sans text-xs font-semibold uppercase tracking-kicker text-ember;
+    @apply font-sans text-lg font-semibold text-ember;
+  }
+
+  /* Ember section heading, as "Visit the gym" on the Contact page. */
+  .section-heading {
+    @apply font-sans text-3xl font-semibold tracking-tight text-ember;
   }
 
   /* Thin hairline used to divide sections on the dark ground. */

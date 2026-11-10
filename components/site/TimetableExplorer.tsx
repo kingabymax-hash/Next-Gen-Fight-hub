@@ -62,7 +62,7 @@ export function TimetableExplorer() {
       <div className="grid grid-cols-1 gap-px bg-paper/10 md:grid-cols-2 lg:grid-cols-7">
         {timetable.map((day) => (
           <div key={day.key} className="bg-ink p-5">
-            <h2 className="mb-5 font-display text-xl uppercase tracking-tight text-paper">
+            <h2 className="mb-5 text-xl text-paper">
               {day.label}
             </h2>
             <ul className="space-y-3">
@@ -142,7 +142,7 @@ export function TimetableExplorer() {
                 <p className="kicker mb-2">
                   {selected.dayLabel} · {slotRange(selected.slot)}
                 </p>
-                <h3 id="class-card-title" className="font-display text-2xl uppercase tracking-tight text-paper">
+                <h3 id="class-card-title" className="text-2xl text-paper">
                   {selected.slot.name}
                 </h3>
                 <p className="mt-2">

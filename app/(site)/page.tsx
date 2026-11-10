@@ -138,7 +138,7 @@ export default function HomePage() {
       <Section divide>
         <Container>
           <span aria-hidden="true" className="block h-1 w-12 bg-ember" />
-          <h2 className="mt-6 font-sans text-4xl font-bold normal-case tracking-tight sm:text-5xl">The team</h2>
+          <h2 className="mt-6 text-4xl sm:text-5xl">The team</h2>
           <ul className="mt-8 grid grid-cols-2 gap-x-4 sm:gap-x-8 sm:grid-cols-3 lg:grid-cols-5">
             {coaches.map((c) => (
               <li key={c.name} className="border-b border-paper/15 py-5">

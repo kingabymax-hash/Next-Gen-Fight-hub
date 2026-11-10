@@ -41,7 +41,7 @@ export function Section({
  */
 /** Section heading in the ember accent, sentence case, as on the Contact page. */
 export function SectionHeading({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <h2 className={`font-sans text-3xl font-semibold normal-case tracking-tight text-ember ${className}`}>{children}</h2>;
+  return <h2 className={`section-heading ${className}`}>{children}</h2>;
 }
 
 export function PageHeader({
@@ -60,7 +60,7 @@ export function PageHeader({
       <Container>
         <div className="flex flex-col gap-10 border-b border-paper/15 pb-10 sm:flex-row sm:items-start sm:justify-between sm:gap-12 sm:pb-12">
           <div>
-            <p className="mb-4 text-lg font-semibold text-ember">{kicker}</p>
+            <p className="kicker mb-4">{kicker}</p>
             <h1 className="max-w-4xl text-5xl leading-[0.95] sm:text-7xl">{title}</h1>
             {lead ? (
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-steel-100 sm:text-lg">{lead}</p>

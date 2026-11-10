@@ -142,7 +142,7 @@ export default function AboutPage() {
               <div key={e.word}>
                 {/* Short ember rule, the one bit of colour in the ethos grid. */}
                 <span aria-hidden="true" className="mb-5 block h-0.5 w-8 bg-ember" />
-                <h2 className="font-display text-4xl text-paper">{e.word}</h2>
+                <h2 className="font-display text-4xl uppercase text-paper">{e.word}</h2>
                 <p className="mt-4 text-sm leading-relaxed text-steel-200">{e.line}</p>
               </div>
             ))}
@@ -166,7 +166,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="space-y-5 text-base leading-relaxed text-steel-200 lg:col-span-7">
-              <p className="kicker">The room is only half of it</p>
+              <h2 className="section-heading">The room is only half of it</h2>
               <p>
                 The other half is who is in it. Juniors who turn up on a Monday and never
                 stop, adults who came for the fitness and stayed for the craft, and fighters
@@ -185,7 +185,7 @@ export default function AboutPage() {
       <Section divide>
         <Container>
           <div className="max-w-2xl">
-            <p className="kicker mb-4">From the head coach</p>
+            <h2 className="section-heading mb-4">From the head coach</h2>
             <p className="text-base leading-relaxed text-steel-200">
               Hayden also runs{" "}
               <a

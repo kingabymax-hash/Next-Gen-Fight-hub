@@ -57,7 +57,7 @@ export default async function MembersPage({
     <>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="kicker mb-3">— Members</p>
+          <p className="kicker mb-3">Members</p>
           <h1 className="text-5xl leading-[0.95] sm:text-6xl">
             {rows.length} {rows.length === 1 ? "person" : "people"}
           </h1>

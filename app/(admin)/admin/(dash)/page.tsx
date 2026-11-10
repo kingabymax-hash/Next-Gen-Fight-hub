@@ -11,7 +11,7 @@ export default async function OverviewPage() {
 
   return (
     <>
-      <p className="kicker mb-3">— Overview</p>
+      <p className="kicker mb-3">Overview</p>
       <h1 className="text-5xl leading-[0.95] sm:text-6xl">The gym today</h1>
 
       <section className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">

@@ -49,7 +49,7 @@ export default function MembershipsPage() {
       {/* General tiers */}
       <Section divide>
         <Container>
-          <p className="kicker mb-8">The tiers</p>
+          <h2 className="section-heading mb-8">The tiers</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {membershipsByGroup.tier.map((m) => (
               <MembershipCard key={m.key} membership={m} />
@@ -61,8 +61,8 @@ export default function MembershipsPage() {
       {/* Discipline-specific */}
       <Section divide>
         <Container>
-          <p className="kicker mb-3">Train one thing</p>
-          <p className="mb-8 max-w-xl text-sm leading-relaxed text-steel-200">
+          <h2 className="section-heading mb-3">Train one thing</h2>
+          <p className="mb-8 max-w-xl text-base leading-relaxed text-steel-100">
             Focused memberships for a single discipline, sitting alongside the tiers. Boxing runs
             in partnership with Top Rope Boxing.
           </p>
@@ -77,8 +77,8 @@ export default function MembershipsPage() {
       {/* Juniors and Cadets */}
       <Section divide>
         <Container>
-          <p className="kicker mb-3">Juniors and Cadets</p>
-          <p className="mb-8 max-w-xl text-sm leading-relaxed text-steel-200">
+          <h2 className="section-heading mb-3">Juniors and Cadets</h2>
+          <p className="mb-8 max-w-xl text-base leading-relaxed text-steel-100">
             Muay Thai for younger members, Monday, Tuesday and Thursday evenings. Juniors
             train first, Cadets straight after.
           </p>
@@ -93,8 +93,8 @@ export default function MembershipsPage() {
       {/* Casual */}
       <Section divide>
         <Container>
-          <p className="kicker mb-3">Just visiting</p>
-          <p className="mb-8 max-w-xl text-sm leading-relaxed text-steel-200">
+          <h2 className="section-heading mb-3">Just visiting</h2>
+          <p className="mb-8 max-w-xl text-base leading-relaxed text-steel-100">
             No membership needed. Pay as you go and come in whenever it suits you.
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:max-w-2xl">
