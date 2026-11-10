@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 /**
- * Shared button styling for the Next Gen look on the dark ground: squared,
+ * Shared button styling for the Next Gen look on the dark ground: slightly rounded,
  * uppercase, letter-spaced, monochrome. One source of truth so the whole site
  * restyles from here.
  *
@@ -15,7 +15,7 @@ type Variant = "primary" | "outline" | "ghost" | "whatsapp";
 
 export function buttonClasses(variant: Variant = "primary", full = false): string {
   const base =
-    "inline-flex items-center justify-center px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50";
+    "inline-flex items-center justify-center rounded-md px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50";
   const width = full ? "w-full" : "";
   const styles =
     variant === "primary"

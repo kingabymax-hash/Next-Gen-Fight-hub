@@ -120,7 +120,7 @@ export function TimetableExplorer() {
               type="button"
               onClick={close}
               aria-label="Close"
-              className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center bg-ink/70 text-paper backdrop-blur transition-colors hover:bg-ink"
+              className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-md bg-ink/70 text-paper backdrop-blur transition-colors hover:bg-ink"
             >
               <CloseIcon />
             </button>

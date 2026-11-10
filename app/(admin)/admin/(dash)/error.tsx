@@ -13,7 +13,7 @@ export default function AdminError({ reset }: { error: Error; reset: () => void 
       <button
         type="button"
         onClick={reset}
-        className="mt-6 border border-paper/25 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper hover:bg-paper hover:text-ink"
+        className="mt-6 rounded-md border border-paper/25 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper hover:bg-paper hover:text-ink"
       >
         Try again
       </button>

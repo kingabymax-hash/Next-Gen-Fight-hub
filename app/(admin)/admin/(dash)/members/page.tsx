@@ -64,7 +64,7 @@ export default async function MembersPage({
         </div>
         <a
           href={exportHref}
-          className="border border-paper/25 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-ink"
+          className="rounded-md border border-paper/25 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-ink"
         >
           Download CSV
         </a>
@@ -118,7 +118,7 @@ export default async function MembersPage({
           </select>
         </label>
         <div className="flex gap-3 sm:col-span-2 lg:col-span-1">
-          <button type="submit" className="flex-1 bg-paper px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink hover:bg-steel-100">
+          <button type="submit" className="flex-1 rounded-md bg-paper px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink hover:bg-steel-100">
             Apply
           </button>
           <Link href="/admin/members" className="flex-1 px-3 py-2.5 text-center text-xs uppercase tracking-[0.2em] text-steel-300 hover:text-paper">

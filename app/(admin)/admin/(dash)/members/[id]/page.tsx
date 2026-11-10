@@ -46,7 +46,7 @@ export default async function MemberPage({ params }: { params: Promise<{ id: str
           href={member.stripeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="border border-paper/25 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-ink"
+          className="rounded-md border border-paper/25 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-ink"
         >
           Open in Stripe
         </a>

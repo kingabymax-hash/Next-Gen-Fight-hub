@@ -19,11 +19,14 @@ export function AdminNav() {
             key={l.href}
             href={l.href}
             aria-current={active ? "page" : undefined}
-            className={`border-b-2 py-1 text-xs font-semibold uppercase tracking-[0.2em] transition-colors ${
-              active ? "border-ember text-paper" : "border-transparent text-steel-300 hover:text-paper"
+            className={`relative py-1 text-xs font-semibold uppercase tracking-[0.2em] transition-colors ${
+              active ? "text-paper" : "text-steel-300 hover:text-paper"
             }`}
           >
             {l.label}
+            {active ? (
+              <span aria-hidden="true" className="absolute -bottom-2 left-1/2 -ml-[0.1em] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-ember" />
+            ) : null}
           </Link>
         );
       })}

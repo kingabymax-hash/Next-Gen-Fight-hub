@@ -38,11 +38,11 @@ export function SiteHeader() {
                 }`}
               >
                 {l.label}
-                {/* Ember underbar marks the page you are on, without moving the row. */}
+                {/* Ember dot under the page you are on, without moving the row. */}
                 {active ? (
                   <span
                     aria-hidden="true"
-                    className="absolute -bottom-1.5 left-0 h-0.5 w-full bg-ember"
+                    className="absolute -bottom-3 left-1/2 -ml-[0.09em] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-ember"
                   />
                 ) : null}
               </Link>
