@@ -15,7 +15,7 @@ export default function MediaPage() {
   return (
     <>
       <PageHeader
-        kicker="— Media"
+        kicker="Media"
         title={<>The room</>}
         lead="Pad work, sparring, fight nights and the people behind them. Have a scroll and see what a night at Next Gen actually looks like."
       />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Container, PageHeader, Section } from "@/components/ui/layout";
+import { Container, PageHeader, Section, SectionHeading } from "@/components/ui/layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { ContactForm } from "@/components/site/ContactForm";
 import { site } from "@/lib/site/config";
@@ -19,7 +19,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        kicker="— Contact"
+        kicker="Contact"
         title={<>Find us</>}
         lead="Drop in, message us on WhatsApp, or come and watch a class. We are easy to find in Basildon."
         aside={
@@ -41,13 +41,13 @@ export default function ContactPage() {
         }
       />
 
-      <Section>
+      <Section className="pt-10 sm:pt-14">
         <Container>
-          <div className="grid gap-14 lg:grid-cols-2">
+          <div className="grid gap-14 lg:grid-cols-[1fr_1.5fr] lg:gap-20">
             {/* Left: details */}
             <div>
-              <p className="kicker mb-4">Where</p>
-              <address className="not-italic text-lg leading-relaxed text-paper">
+              <SectionHeading className="mb-4">Visit the gym</SectionHeading>
+              <address className="not-italic text-xl leading-relaxed text-paper">
                 {site.address.line1}
                 <br />
                 {site.address.city}, {site.address.county}
@@ -58,22 +58,22 @@ export default function ContactPage() {
                 href={site.mapLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.18em] text-steel-300 transition-colors hover:text-ember"
+                className="mt-2 inline-block text-base text-steel-100 underline underline-offset-4 transition-colors hover:text-ember"
               >
-                Open in Google Maps
+                Open in Google Maps ↗
               </a>
 
-              <p className="kicker mb-4 mt-12">Opening hours</p>
-              <ul className="space-y-2">
+              <SectionHeading className="mb-4 mt-12">Opening hours</SectionHeading>
+              <ul>
                 {hours.map((h) => (
-                  <li key={h.day} className="flex justify-between border-b border-paper/10 py-2 text-sm">
-                    <span className="text-steel-200">{h.day}</span>
+                  <li key={h.day} className="flex justify-between border-b border-paper/15 py-3 text-lg">
+                    <span className="text-paper">{h.day}</span>
                     <span className="text-paper">{h.range}</span>
                   </li>
                 ))}
               </ul>
 
-              <p className="kicker mb-4 mt-12">WhatsApp</p>
+              <SectionHeading className="mb-4 mt-12">WhatsApp</SectionHeading>
               <p className="max-w-sm text-base leading-relaxed text-steel-200">
                 The quickest way to reach us. Message the gym and Hayden will get back to you.
               </p>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              <p className="kicker mb-4 mt-12">Follow</p>
+              <SectionHeading className="mb-4 mt-12">Follow us</SectionHeading>
               <div className="flex items-center gap-5 text-steel-300">
                 <a href={site.socials.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-ember" aria-label="Instagram">
                   <InstagramIcon />
@@ -107,7 +107,7 @@ export default function ContactPage() {
 
             {/* Right: form */}
             <div>
-              <p className="kicker mb-6">Send a message</p>
+              <SectionHeading className="mb-6">Send a message</SectionHeading>
               <ContactForm />
             </div>
           </div>

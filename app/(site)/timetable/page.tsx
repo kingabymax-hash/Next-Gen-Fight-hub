@@ -15,7 +15,7 @@ export default function TimetablePage() {
   return (
     <>
       <PageHeader
-        kicker="— Timetable"
+        kicker="Timetable"
         title={<>The week</>}
         lead="Juniors to adults, beginners to fighters. All levels welcome. Tap any class to see who takes it and what to expect."
       />

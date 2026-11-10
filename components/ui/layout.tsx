@@ -39,6 +39,11 @@ export function Section({
  * Contact page uses it for the club crest). It sits below the copy on mobile-first
  * narrow screens and only moves alongside it once there is room.
  */
+/** Section heading in the ember accent, sentence case, as on the Contact page. */
+export function SectionHeading({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <h2 className={`font-sans text-3xl font-semibold normal-case tracking-tight text-ember ${className}`}>{children}</h2>;
+}
+
 export function PageHeader({
   kicker,
   title,
@@ -51,14 +56,14 @@ export function PageHeader({
   aside?: ReactNode;
 }) {
   return (
-    <header className="pt-16 sm:pt-24">
+    <header className="pt-12 sm:pt-16">
       <Container>
-        <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between sm:gap-12">
+        <div className="flex flex-col gap-10 border-b border-paper/15 pb-10 sm:flex-row sm:items-start sm:justify-between sm:gap-12 sm:pb-12">
           <div>
-            <p className="kicker mb-5">{kicker}</p>
+            <p className="mb-4 text-lg font-semibold text-ember">{kicker}</p>
             <h1 className="max-w-4xl text-5xl leading-[0.95] sm:text-7xl">{title}</h1>
             {lead ? (
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-steel-200">{lead}</p>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-steel-100 sm:text-lg">{lead}</p>
             ) : null}
           </div>
           {aside ? <div className="shrink-0 sm:pt-2">{aside}</div> : null}

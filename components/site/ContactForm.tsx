@@ -8,7 +8,7 @@ import { site } from "@/lib/site/config";
 const initial: ContactState = { status: "idle" };
 
 const fieldClass =
-  "w-full border border-paper/20 bg-transparent px-4 py-3 text-sm text-paper placeholder:text-steel-500 focus:border-ember focus:outline-none";
+  "w-full border border-paper/30 bg-transparent px-4 py-3 text-base text-paper placeholder:text-steel-400 focus:border-ember focus:outline-none";
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitContact, initial);
@@ -24,24 +24,26 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-5" noValidate>
-      <div>
-        <label htmlFor="name" className="mb-2 block text-xs uppercase tracking-[0.18em] text-steel-300">
-          Name
-        </label>
-        <input id="name" name="name" type="text" autoComplete="name" className={fieldClass} placeholder="Your name" />
-        {state.errors?.name ? <p className="mt-1.5 text-xs text-ember">{state.errors.name}</p> : null}
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="name" className="mb-2 block text-base text-paper">
+            Name
+          </label>
+          <input id="name" name="name" type="text" autoComplete="name" className={fieldClass} placeholder="Your name" />
+          {state.errors?.name ? <p className="mt-1.5 text-xs text-ember">{state.errors.name}</p> : null}
+        </div>
+
+        <div>
+          <label htmlFor="email" className="mb-2 block text-base text-paper">
+            Email
+          </label>
+          <input id="email" name="email" type="email" autoComplete="email" className={fieldClass} placeholder="you@email.com" />
+          {state.errors?.email ? <p className="mt-1.5 text-xs text-ember">{state.errors.email}</p> : null}
+        </div>
       </div>
 
       <div>
-        <label htmlFor="email" className="mb-2 block text-xs uppercase tracking-[0.18em] text-steel-300">
-          Email
-        </label>
-        <input id="email" name="email" type="email" autoComplete="email" className={fieldClass} placeholder="you@email.com" />
-        {state.errors?.email ? <p className="mt-1.5 text-xs text-ember">{state.errors.email}</p> : null}
-      </div>
-
-      <div>
-        <label htmlFor="message" className="mb-2 block text-xs uppercase tracking-[0.18em] text-steel-300">
+        <label htmlFor="message" className="mb-2 block text-base text-paper">
           Message
         </label>
         <textarea id="message" name="message" rows={5} className={fieldClass} placeholder="What would you like to know?" />

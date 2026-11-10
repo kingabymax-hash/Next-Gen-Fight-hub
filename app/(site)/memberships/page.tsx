@@ -18,7 +18,7 @@ export default function MembershipsPage() {
   return (
     <>
       <PageHeader
-        kicker="— Memberships"
+        kicker="Memberships"
         title={<>Pick your<br />way in</>}
         lead="No joining fee, no lock-in. Not sure yet? Try any class for £10 and see the room for yourself."
       />

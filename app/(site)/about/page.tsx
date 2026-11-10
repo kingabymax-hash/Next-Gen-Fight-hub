@@ -41,7 +41,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader
-        kicker="— About"
+        kicker="About"
         title={<>More than<br />a gym</>}
         lead="Next Gen Fight Hub is a Muay Thai, Boxing and MMA gym in Basildon, Essex. Fitness. Technique. Community."
       />

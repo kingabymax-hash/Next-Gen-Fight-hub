@@ -49,7 +49,7 @@ export default async function JoinPage({ params }: { params: Promise<{ key: stri
   return (
     <>
       <PageHeader
-        kicker="— Join"
+        kicker="Join"
         title={membership.name}
         lead={
           youth

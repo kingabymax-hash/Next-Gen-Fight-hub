@@ -72,7 +72,7 @@ export default function CoachesPage() {
   return (
     <>
       <PageHeader
-        kicker="— The team"
+        kicker="The team"
         title={<>Coaches</>}
         lead="Real fighters and specialist coaches across Muay Thai, boxing, K1 and MMA. Led from the front by head coach Hayden."
       />

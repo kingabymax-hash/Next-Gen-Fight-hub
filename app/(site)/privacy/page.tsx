@@ -72,7 +72,7 @@ const sections: { heading: string; body: React.ReactNode }[] = [
 export default function PrivacyPage() {
   return (
     <>
-      <PageHeader kicker="— Privacy" title="Your details" lead="What we collect, why, and what you can ask us to do with it." />
+      <PageHeader kicker="Privacy" title="Your details" lead="What we collect, why, and what you can ask us to do with it." />
       <Section>
         <Container>
           <div className="max-w-2xl space-y-10">
