@@ -31,7 +31,8 @@ const sections: { heading: string; body: React.ReactNode }[] = [
         When you join: your name, email address and phone number, and for Juniors and Cadets,
         the member&apos;s name. Your payment is taken by Stripe, so your card details go to
         Stripe and never to us. When you send a message through the contact form: your name,
-        email and message.
+        email and message. The first time you check in at the door with the QR code: a
+        selfie, so our front desk can see it is really you.
       </>
     ),
   },
@@ -50,7 +51,8 @@ const sections: { heading: string; body: React.ReactNode }[] = [
     body: (
       <>
         Membership and payment details are held by Stripe, our payment provider, and only
-        the gym can see them. Contact form messages arrive by email. We keep membership
+        the gym can see them. Your check-in photo and visit times are stored privately by
+        us, and only gym staff can see them. Ask us any time and we will delete your photo. Contact form messages arrive by email. We keep membership
         details while you are a member and for as long as the law requires for our accounts
         afterwards.
       </>

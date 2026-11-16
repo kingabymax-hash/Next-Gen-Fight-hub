@@ -12,6 +12,8 @@ const adminSchema = z.object({
   STRIPE_SECRET_KEY: z.string().regex(/^(sk|rk)_(live|test)_/, "must be a Stripe secret or restricted key"),
   ADMIN_PASSWORD: z.string().min(16, "must be at least 16 characters"),
   ADMIN_SESSION_SECRET: z.string().min(32, "must be at least 32 characters"),
+  /** Optional second password for the junior receptionists: front desk only. */
+  DESK_PASSWORD: z.string().min(12, "must be at least 12 characters").optional().or(z.literal("").transform(() => undefined)),
 });
 
 export type AdminEnv = z.infer<typeof adminSchema>;

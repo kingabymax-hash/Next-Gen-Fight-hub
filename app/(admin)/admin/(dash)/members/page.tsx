@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { requireOwner } from "@/lib/admin/session";
 import { Email, Flag, MemberName, MembershipLabel, NextPayment, Phone, StatusBadge } from "@/components/admin/bits";
 import { money, shortDate } from "@/lib/admin/format";
 import {
@@ -48,6 +49,7 @@ export default async function MembersPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  await requireOwner();
   const query = parseMembersQuery(await searchParams);
   const all = await getMembers();
   const rows = filterMembers(all, query);

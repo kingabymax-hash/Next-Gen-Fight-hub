@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getAdminEnv } from "@/lib/admin/env";
-import { hasSession } from "@/lib/admin/session";
+import { sessionRole } from "@/lib/admin/session";
 import { filterMembers, getMembers, parseMembersQuery, statusLabels } from "@/lib/admin/members";
 import { isoDate } from "@/lib/admin/format";
 import { formatUkPhone } from "@/lib/site/joinDetails";
@@ -15,7 +15,7 @@ function cell(value: string | number | null): string {
 }
 
 export async function GET(request: NextRequest) {
-  if (!getAdminEnv() || !(await hasSession())) {
+  if (!getAdminEnv() || (await sessionRole()) !== "owner") {
     return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 

@@ -3,16 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const links = [
+import type { Role } from "@/lib/admin/session";
+
+const links: { href: string; label: string; desk?: boolean }[] = [
   { href: "/admin", label: "Overview" },
+  { href: "/admin/front-desk", label: "Front desk", desk: true },
   { href: "/admin/members", label: "Members" },
+  { href: "/admin/qr", label: "QR code" },
 ];
 
-export function AdminNav() {
+/** The receptionists' login sees the front desk only, so they get no nav at all. */
+export function AdminNav({ role }: { role: Role }) {
   const path = usePathname();
+  if (role === "desk") return null;
   return (
-    <nav aria-label="Admin" className="flex items-center gap-6">
-      {links.map((l) => {
+    <nav aria-label="Admin" className="flex flex-wrap items-center gap-x-6 gap-y-2">
+      {links.filter((l) => role === "owner" || l.desk).map((l) => {
         const active = l.href === "/admin" ? path === "/admin" : path.startsWith(l.href);
         return (
           <Link

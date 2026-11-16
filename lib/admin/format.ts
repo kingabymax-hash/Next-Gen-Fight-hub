@@ -62,6 +62,14 @@ export function daysUntil(date: Date, now = new Date()): number {
   return Math.round((Date.UTC(b.year, b.month - 1, b.day) - Date.UTC(a.year, a.month - 1, a.day)) / 86_400_000);
 }
 
+/** "Today", "Yesterday", "5 days ago". */
+export function daysAgo(date: Date, now = new Date()): string {
+  const days = -daysUntil(date, now);
+  if (days <= 0) return "Today";
+  if (days === 1) return "Yesterday";
+  return `${days} days ago`;
+}
+
 /** "Today", "Tomorrow", "In 12 days". */
 export function inDays(days: number): string {
   if (days <= 0) return "Today";

@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { z } from "zod";
-import { requireSession } from "@/lib/admin/session";
+import { requireOwner, requireSession } from "@/lib/admin/session";
 import {
   listCompletedCheckoutSessions,
   listCustomerInvoices,
@@ -15,7 +15,7 @@ import { priceToPaymentKey } from "@/lib/admin/priceMap";
 import { startOfLondonMonth } from "@/lib/admin/format";
 import { memberships } from "@/lib/site/memberships";
 import type { PaymentKey } from "@/lib/site/payments";
-import { unpackJoinDetails, type JoinDetails } from "@/lib/site/joinDetails";
+import { normaliseUkPhone, unpackJoinDetails, type JoinDetails } from "@/lib/site/joinDetails";
 
 /**
  * Every business rule of the dashboard lives here: how Stripe subscriptions become
@@ -143,8 +143,12 @@ type Loaded = {
   productNames: Map<string, string>;
 };
 
-const load = cache(async (): Promise<Loaded> => {
-  await requireSession();
+/**
+ * Reads Stripe and builds every member row. NOT session-guarded: only `load` (admin)
+ * and `findMembersByContact` (the public check-in, which returns a narrow shape) may
+ * call it.
+ */
+async function buildMembers(): Promise<Loaded> {
   const [allSubs, sessions, invoices, products] = await Promise.all([
     listSubscriptions(),
     listCompletedCheckoutSessions(),
@@ -225,10 +229,100 @@ const load = cache(async (): Promise<Loaded> => {
   }
 
   return { members, subscriptionsByCustomer, subscriptions, productNames };
+}
+
+const load = cache(async (): Promise<Loaded> => {
+  await requireSession();
+  return buildMembers();
 });
 
+// ---------------------------------------------------------------------------
+// Check-in lookup (public /checkin, first visit on a phone only)
+
+/** What the public check-in may learn about a member. Nothing else leaves here. */
+export type CheckInMember = {
+  subscriptionId: string;
+  customerId: string;
+  /** Who is training: the junior's name for youth memberships, else the payer. */
+  name: string;
+  membershipLabel: string;
+  status: MemberStatus;
+};
+
+// The whole-gym read is several paginated Stripe calls, so first-time check-ins at
+// the start of a busy class share one copy for a minute (per server instance).
+let indexCache: { at: number; members: Member[] } | null = null;
+const INDEX_TTL_MS = 60_000;
+
+export function toCheckInMember(m: Member): CheckInMember {
+  return {
+    subscriptionId: m.rowId,
+    customerId: m.customerId,
+    name: m.youthMemberName || m.name,
+    membershipLabel: m.membership.label,
+    status: m.status,
+  };
+}
+
+/**
+ * Finds the memberships a phone number or email belongs to. Exact matches only
+ * (a whole UK mobile or a whole email), never partial, so it cannot be used to browse.
+ */
+export async function findMembersByContact(input: string): Promise<CheckInMember[]> {
+  const value = input.trim().toLowerCase();
+  const email = value.includes("@") ? value : null;
+  const phone = email ? null : normaliseUkPhone(value);
+  if (!email && !phone) return [];
+
+  if (!indexCache || Date.now() - indexCache.at > INDEX_TTL_MS) {
+    indexCache = { at: Date.now(), members: (await buildMembers()).members };
+  }
+  const matches = indexCache.members.filter((m) =>
+    email ? m.email?.toLowerCase() === email : m.phone ? normaliseUkPhone(m.phone) === phone : false,
+  );
+  // Current memberships first; a cancelled one only if that is all they have.
+  const current = matches.filter(isCurrent);
+  return (current.length > 0 ? current : matches.slice(0, 1)).map(toCheckInMember);
+}
+
+/** Owner only: the full rows, with payments and contact details. */
 export async function getMembers(): Promise<Member[]> {
+  await requireOwner();
   return (await load()).members;
+}
+
+/** What the front desk may see when checking someone in by hand. */
+export type DeskMember = {
+  rowId: string;
+  customerId: string;
+  name: string;
+  membershipLabel: string;
+  status: MemberStatus;
+};
+
+/**
+ * Any signed-in role. Searches current members by name, phone or email, and returns
+ * only names, membership and status: no money, no contact details.
+ */
+export async function searchMembersForDesk(q: string, limit = 8): Promise<DeskMember[]> {
+  await requireSession();
+  const rows = filterMembers((await load()).members, { q, status: "current", membership: "", sort: "name" });
+  return rows.slice(0, limit).map((m) => ({
+    rowId: m.rowId,
+    customerId: m.customerId,
+    name: m.youthMemberName || m.name,
+    membershipLabel: m.membership.label,
+    status: m.status,
+  }));
+}
+
+/** Any signed-in role: one current membership by subscription id, for a desk check-in. */
+export async function findDeskMember(rowId: string): Promise<DeskMember | null> {
+  await requireSession();
+  const m = (await load()).members.find((row) => row.rowId === rowId);
+  return m
+    ? { rowId: m.rowId, customerId: m.customerId, name: m.youthMemberName || m.name, membershipLabel: m.membership.label, status: m.status }
+    : null;
 }
 
 // ---------------------------------------------------------------------------
@@ -246,6 +340,7 @@ export type Overview = {
 export const isCurrent = (m: Member) => m.status !== "cancelled";
 
 export async function getOverview(now = new Date()): Promise<Overview> {
+  await requireOwner();
   const { members, subscriptions } = await load();
   const monthStart = startOfLondonMonth(now).getTime() / 1000;
   const current = members.filter(isCurrent);
@@ -374,6 +469,7 @@ export type MemberDetail = {
 };
 
 export async function getMemberDetail(customerId: string): Promise<MemberDetail | null> {
+  await requireOwner();
   const { members, subscriptionsByCustomer, productNames } = await load();
   const rows = members.filter((m) => m.customerId === customerId);
   const subs = subscriptionsByCustomer.get(customerId);

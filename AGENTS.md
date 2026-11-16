@@ -18,12 +18,21 @@ Stack: Next.js 15 App Router · Tailwind · Vercel. Static-first.
    (the `/join/[key]` details step is static too: its form posts nothing to us). The one
    exception is `/admin`, Hayden's private, read-only members dashboard
    (`app/(admin)/`, spec `specs/2026-11-09-member-dashboard/`): dynamic, never indexed,
-   gated by one shared password and a signed session cookie. Still no user accounts.
+   gated by a signed session cookie and two shared passwords: `ADMIN_PASSWORD`
+   (Hayden and Elise, everything) and optional `DESK_PASSWORD` (the receptionists, front
+   desk only, enforced by `requireOwner` in `lib/admin/session.ts`). Still no user accounts.
+   The second exception is `/checkin`, the member QR check-in (`app/(checkin)/`, spec
+   `specs/2026-11-16-qr-checkin/`): dynamic, never indexed, never in the nav. It
+   remembers a member's phone with a signed cookie, not an account. The only data the
+   app stores itself is the check-in log and each member's first-check-in selfie
+   (private, staff-only via `/admin/photo/[key]`), in one Upstash Redis database reached over
+   REST by `lib/checkin/store.ts`; like email, it is a side-effect, never a dependency.
 2. **Payments are Stripe hosted Payment Links only.** Plain external URLs in
    `lib/site/payments.ts`, reached through `/join/[key]`, which packs the buyer's details
    into `client_reference_id` (`lib/site/joinDetails.ts`). The app holds one Stripe key
    (`STRIPE_SECRET_KEY`), used only by `lib/admin/stripe.ts`, which may only send GET
    requests. No webhook, no Stripe SDK, no checkout backend, no write calls to Stripe.
+   `/checkin` reads through those same GET helpers.
 3. **Email is a side-effect, never a dependency.** `lib/email/send.ts#safeSendEmail` never
    throws; the contact form degrades to a "DM us" fallback if it fails or is unconfigured.
 4. **Content is data, not markup.** Timetable, memberships, coaches, photography and site

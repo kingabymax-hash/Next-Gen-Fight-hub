@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { requireOwner } from "@/lib/admin/session";
 import { Email, Flag, Kicker, MembershipLabel, NextPayment, Phone, StatusBadge } from "@/components/admin/bits";
-import { money, shortDate } from "@/lib/admin/format";
+import { daysAgo, money, shortDate } from "@/lib/admin/format";
+import { isStoreConfigured, photoKey, photosExist, type CheckIn } from "@/lib/checkin/store";
+import { MemberPhoto } from "@/components/admin/MemberPhoto";
+import { clearPhoto } from "./actions";
 import { getMemberDetail } from "@/lib/admin/members";
+import { getMemberVisits } from "@/lib/admin/checkins";
 
 export const metadata: Metadata = { title: "Member" };
 
@@ -14,12 +19,61 @@ const paymentStatus: Record<string, string> = {
   void: "Void",
 };
 
+const visitTime = (ms: number) =>
+  new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).format(ms);
+
+function Attendance({ visits }: { visits: CheckIn[] | null }) {
+  if (visits === null) {
+    return (
+      <section>
+        <Kicker className="mb-4">Attendance</Kicker>
+        <p className="text-sm text-steel-300">Could not read check-ins just now.</p>
+      </section>
+    );
+  }
+  const last30 = visits.filter((v) => v.at > Date.now() - 30 * 86_400_000).length;
+  const last = visits[0];
+  return (
+    <section>
+      <Kicker className="mb-4">Attendance</Kicker>
+      <dl className="grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <dt className="text-xs text-steel-400">Last 30 days</dt>
+          <dd className="mt-0.5 font-display text-3xl leading-none text-paper">{last30}</dd>
+        </div>
+        <div>
+          <dt className="text-xs text-steel-400">Last in</dt>
+          <dd className="mt-0.5 text-paper">{last ? daysAgo(new Date(last.at)) : "Not yet"}</dd>
+        </div>
+      </dl>
+      {visits.length > 0 ? (
+        <ul className="mt-4 divide-y divide-paper/10 border-y border-paper/10 text-sm">
+          {visits.slice(0, 8).map((v) => (
+            <li key={`${v.at}-${v.subscriptionId}`} className="flex justify-between gap-3 py-2">
+              <span className="text-steel-200">{visitTime(v.at)}</span>
+              <span className="text-right text-steel-400">{v.className ?? (v.via === "desk" ? "By hand" : "Open time")}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </section>
+  );
+}
+
 export default async function MemberPage({ params }: { params: Promise<{ id: string }> }) {
+  await requireOwner();
   const { id } = await params;
   if (!/^cus_[A-Za-z0-9]+$/.test(id)) notFound();
-  const detail = await getMemberDetail(id);
+  const [detail, attendance] = await Promise.all([getMemberDetail(id), getMemberVisits(id)]);
   if (!detail) notFound();
   const { member, rows, history, payments } = detail;
+
+  // One photo per person training: a parent paying for two juniors has two.
+  const people = [...new Map(rows.map((r) => {
+    const name = r.youthMemberName || r.name;
+    return [photoKey(r.customerId, name), name] as const;
+  })).entries()].map(([key, name]) => ({ key, name }));
+  const photos = isStoreConfigured() ? await photosExist(people.map((p) => p.key)) : null;
 
   return (
     <>
@@ -107,6 +161,36 @@ export default async function MemberPage({ params }: { params: Promise<{ id: str
               </div>
             </dl>
           </section>
+
+          {photos ? (
+            <section>
+              <Kicker className="mb-4">Check-in photo</Kicker>
+              <ul className="flex flex-wrap gap-6">
+                {people.map((p) => (
+                  <li key={p.key} className="space-y-2">
+                    <MemberPhoto photoKey={p.key} has={photos.has(p.key)} name={p.name} size="md" />
+                    {people.length > 1 ? <p className="text-xs text-steel-300">{p.name}</p> : null}
+                    {photos.has(p.key) ? (
+                      <form action={clearPhoto}>
+                        <input type="hidden" name="key" value={p.key} />
+                        <button type="submit" className="text-xs uppercase tracking-[0.16em] text-steel-400 hover:text-ember">
+                          Retake
+                        </button>
+                      </form>
+                    ) : (
+                      <p className="max-w-[8rem] text-xs text-steel-400">Taken on their next scan</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 max-w-sm text-xs leading-relaxed text-steel-400">
+                Retake clears the photo and asks for a new selfie next time they scan. Use it
+                if the photo is wrong, or isn&rsquo;t them.
+              </p>
+            </section>
+          ) : null}
+
+          {attendance.configured ? <Attendance visits={attendance.visits} /> : null}
 
           <section>
             <Kicker className="mb-4">Memberships</Kicker>

@@ -1,11 +1,14 @@
+import { requireOwner } from "@/lib/admin/session";
 import Link from "next/link";
 import { StatTile } from "@/components/admin/StatTile";
-import { Kicker } from "@/components/admin/bits";
+import { Kicker, Phone } from "@/components/admin/bits";
+import { getDayLog, getNotSeenLately, NOT_SEEN_DAYS } from "@/lib/admin/checkins";
 import { getOverview } from "@/lib/admin/members";
-import { money, monthName } from "@/lib/admin/format";
+import { daysAgo, money, monthName } from "@/lib/admin/format";
 
 export default async function OverviewPage() {
-  const o = await getOverview();
+  await requireOwner();
+  const [o, today, notSeen] = await Promise.all([getOverview(), getDayLog(), getNotSeenLately()]);
   const month = monthName();
   const max = Math.max(1, ...o.byMembership.map((m) => m.count));
 
@@ -27,6 +30,18 @@ export default async function OverviewPage() {
           attention={o.needsAttention > 0}
         />
       </section>
+
+      {today.configured ? (
+        <section className="mt-3 grid grid-cols-2 gap-3 sm:mt-4 sm:gap-4 lg:grid-cols-5">
+          <StatTile label="Checked in today" value={String(today.checkedIn)} note="Open the front desk" href="/admin/front-desk" />
+          <StatTile
+            label="Not trained lately"
+            value={notSeen ? String(notSeen.length) : "-"}
+            note={`No visit in ${NOT_SEEN_DAYS}+ days`}
+            href="#not-seen"
+          />
+        </section>
+      ) : null}
 
       <section className="mt-14 max-w-3xl">
         <Kicker className="mb-5">Members by membership</Kicker>
@@ -55,6 +70,28 @@ export default async function OverviewPage() {
           </ul>
         )}
       </section>
+
+      {notSeen && notSeen.length > 0 ? (
+        <section id="not-seen" className="mt-14 max-w-3xl scroll-mt-24">
+          <Kicker className="mb-2">Not trained in {NOT_SEEN_DAYS}+ days</Kicker>
+          <p className="mb-5 text-sm text-steel-300">Still paying, but not coming in. A quick message now keeps them from cancelling.</p>
+          <ul className="divide-y divide-paper/10 border-y border-paper/10">
+            {notSeen.map(({ member, lastSeen }) => (
+              <li key={member.customerId} className="flex flex-wrap items-center justify-between gap-3 py-3 text-sm">
+                <span>
+                  <Link href={`/admin/members/${member.customerId}`} className="font-semibold text-paper underline-offset-4 hover:text-ember hover:underline">
+                    {member.youthMemberName || member.name}
+                  </Link>
+                  <span className="mt-0.5 block text-xs text-steel-400">Last in {daysAgo(lastSeen).toLowerCase()} · {member.membership.label}</span>
+                </span>
+                <span className="text-steel-200">
+                  <Phone phone={member.phone} />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </>
   );
 }
