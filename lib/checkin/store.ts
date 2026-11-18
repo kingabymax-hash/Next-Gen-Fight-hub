@@ -231,13 +231,19 @@ export function photoKey(customerId: string, name: string): string {
 
 export const isPhotoKey = (key: string) => /^cus_[A-Za-z0-9]+_[0-9a-f]{12}$/.test(key);
 
+/** Every photo key that has a selfie, so a whole list is checked in one command. */
+const PHOTO_INDEX = "ci:photos";
+
 /** Which of these keys have a photo. Null when the store cannot be read. */
 export async function photosExist(keys: string[]): Promise<Set<string> | null> {
   const unique = [...new Set(keys)];
   if (unique.length === 0) return new Set();
-  const res = await pipeline(unique.map((k) => ["EXISTS", `ci:photo:${k}`]));
-  if (!res) return null;
-  return new Set(unique.filter((_, i) => Number(res[i]) === 1));
+  // One command however many faces: the front desk asks this on every refresh, and
+  // the free Upstash plan counts each command in a pipeline.
+  const res = await pipeline([["SMISMEMBER", PHOTO_INDEX, ...unique]]);
+  if (!res || !Array.isArray(res[0])) return null;
+  const flags = res[0] as unknown[];
+  return new Set(unique.filter((_, i) => Number(flags[i]) === 1));
 }
 
 export async function getPhoto(key: string): Promise<{ jpeg: Buffer; at: number | null } | null> {
@@ -258,11 +264,12 @@ export async function savePhoto(key: string, jpeg: Buffer, now = Date.now()): Pr
   const res = await pipeline([
     ["SET", `ci:photo:${key}`, jpeg.toString("base64"), "NX"],
     ["SET", `ci:photo-at:${key}`, now, "NX"],
+    ["SADD", PHOTO_INDEX, key],
   ]);
   if (!res) return "failed";
   return res[0] === "OK" ? "saved" : "exists";
 }
 
 export async function deletePhoto(key: string): Promise<boolean> {
-  return (await pipeline([["DEL", `ci:photo:${key}`, `ci:photo-at:${key}`]])) !== null;
+  return (await pipeline([["DEL", `ci:photo:${key}`, `ci:photo-at:${key}`], ["SREM", PHOTO_INDEX, key]])) !== null;
 }

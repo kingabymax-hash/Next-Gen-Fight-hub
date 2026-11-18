@@ -17,7 +17,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
   return new NextResponse(new Uint8Array(photo.jpeg), {
     headers: {
       "Content-Type": "image/jpeg",
-      "Cache-Control": "private, max-age=300",
+      "Cache-Control": "private, max-age=3600",
       "X-Robots-Tag": "noindex",
     },
   });
