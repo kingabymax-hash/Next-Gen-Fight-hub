@@ -5,6 +5,7 @@ import { MembershipCard } from "@/components/site/MembershipCard";
 import { membershipsByGroup } from "@/lib/site/memberships";
 import { isConfigured, paymentUrl } from "@/lib/site/payments";
 import { gymImages } from "@/lib/site/media";
+import { CancellationPolicy } from "@/components/site/CancellationPolicy";
 
 export const metadata: Metadata = {
   title: "Memberships",
@@ -112,8 +113,8 @@ export default function MembershipsPage() {
             <div>
               <h2 className="text-2xl sm:text-3xl">Already a member?</h2>
               <p className="mt-2 max-w-md text-sm text-steel-200">
-                Manage your membership, update your card, or cancel any time through the secure
-                billing portal.
+                Manage your membership or update your card through the secure billing portal.
+                Cancelling needs 30 days&rsquo; written notice.
               </p>
             </div>
             {portalLive ? (
@@ -130,6 +131,9 @@ export default function MembershipsPage() {
                 Portal coming soon
               </span>
             )}
+          </div>
+          <div className="mt-10">
+            <CancellationPolicy />
           </div>
         </Container>
       </Section>

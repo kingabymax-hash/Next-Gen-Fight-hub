@@ -84,7 +84,7 @@ export default async function JoinPage({ params }: { params: Promise<{ key: stri
                 <TierStars tier={membership.key} count={membership.stars} className="mt-6 !justify-start" />
               ) : null}
               <p className="mt-6 text-[0.7rem] uppercase tracking-[0.15em] text-steel-500">
-                No joining fee · cancel any time
+                No joining fee · 30 days&rsquo; notice to cancel
               </p>
               <Link
                 href="/memberships"
